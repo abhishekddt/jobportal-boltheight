@@ -91,15 +91,597 @@
                                         class="text-danger">*</span></label>
                                 <select class="form-control selects1" name="latest_fleet" required>
                                     <option>Latest Fleet</option>
-                                    <option value="A300-600"
+                                    <option value="one"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A220' ? 'selected' : '' }}>
+                                        A220
+                                    </option>
+                                    <option value="two"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A300-600' ? 'selected' : '' }}>
-                                        A300-600</option>
+                                        A300-600
+                                    </option>
                                     <option value="A300-B4"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A300-B4' ? 'selected' : '' }}>
-                                        >A300-B4</option>
+                                        A300-B4
+                                    </option>
                                     <option value="A310"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A310' ? 'selected' : '' }}>
-                                        A310</option>
+                                        A310
+                                    </option>
+                                    <option value="A320-Family"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A320-Family' ? 'selected' : '' }}>
+                                        A320 Family
+                                    </option>
+                                    <option value="A330"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A330' ? 'selected' : '' }}>
+                                        A330
+                                    </option>
+                                    <option value="A340"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A340' ? 'selected' : '' }}>
+                                        A340
+                                    </option>
+                                    <option value="A380"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'A380' ? 'selected' : '' }}>
+                                        A380
+                                    </option>
+                                    <option value="Agusta-Westland"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Agusta-Westland' ? 'selected' : '' }}>
+                                        Agusta/Westland
+                                    </option>
+                                    <option value="AgustaWestland-AW139"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'AgustaWestland-AW139' ? 'selected' : '' }}>
+                                        AgustaWestland AW139
+                                    </option>
+                                    <option value="ATR-42-300-400"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ATR-42-300-400' ? 'selected' : '' }}>
+                                        ATR 42 300/400
+                                    </option>
+                                    <option value="ATR-42-600"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ATR-42-600' ? 'selected' : '' }}>
+                                        ATR 42 600
+                                    </option>
+                                    <option value="ATR-72-100-200-300"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ATR-72-100-200-300' ? 'selected' : '' }}>
+                                        ATR 72 100/200/300
+                                    </option>
+                                    <option value="ATR-72-500"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ATR-72-500' ? 'selected' : '' }}>
+                                        ATR 72 500
+                                    </option>
+                                    <option value="ATR-72-600"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ATR-72-600' ? 'selected' : '' }}>
+                                        ATR 72 600
+                                    </option>
+                                    <option value="AVRO-RJ-100"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'AVRO-RJ-100' ? 'selected' : '' }}>
+                                        AVRO RJ 100
+                                    </option>
+                                    <option value="AVRO-RJ-115"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'AVRO-RJ-115' ? 'selected' : '' }}>
+                                        AVRO RJ 115
+                                    </option>
+                                    <option value="AVRO-RJ-70"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'AVRO-RJ-70' ? 'selected' : '' }}>
+                                        AVRO RJ 70
+                                    </option>
+                                    <option value="AVRO-RJ-85"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'AVRO-RJ-85' ? 'selected' : '' }}>
+                                        AVRO RJ 85
+                                    </option>
+                                    <option value="AVRO-RJX"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'AVRO-RJX' ? 'selected' : '' }}>
+                                        AVRO RJX
+                                    </option>
+                                    <option value="Avroliner"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Avroliner' ? 'selected' : '' }}>
+                                        Avroliner
+                                    </option>
+                                    <option value="B707"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B707' ? 'selected' : '' }}>
+                                        B707
+                                    </option>
+                                    <option value="B717"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B717' ? 'selected' : '' }}>
+                                        B717
+                                    </option>
+                                    <option value="B727"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B727' ? 'selected' : '' }}>
+                                        B727
+                                    </option>
+                                    <option value="B737-1-200"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B737-1-200' ? 'selected' : '' }}>
+                                        B737-1/200
+                                    </option>
+                                    <option value="B737-3-4-500-Analog"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B737-3-4-500-Analog' ? 'selected' : '' }}>
+                                        B737-3/4/500 Analog
+                                    </option>
+                                    <option value="B737-3-4-500-EFIS"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B737-3-4-500-EFIS' ? 'selected' : '' }}>
+                                        B737-3/4/500 EFIS
+                                    </option>
+                                    <option value="B737-6-7-8-900-NG"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B737-6-7-8-900-NG' ? 'selected' : '' }}>
+                                        B737-6/7/8/900 NG
+                                    </option>
+                                    <option value="B737-MAX"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B737-MAX' ? 'selected' : '' }}>
+                                        B737-MAX
+                                    </option>
+                                    <option value="B747-1-2-300"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B747-1-2-300' ? 'selected' : '' }}>
+                                        B747-1/2/300
+                                    </option>
+                                    <option value="B747-400"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B747-400' ? 'selected' : '' }}>
+                                        B747-400
+                                    </option>
+                                    <option value="B747-800"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B747-800' ? 'selected' : '' }}>
+                                        B747-800
+                                    </option>
+                                    <option value="B747-SP"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B747-SP' ? 'selected' : '' }}>
+                                        B747-SP
+                                    </option>
+                                    <option value="B757"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B757' ? 'selected' : '' }}>
+                                        B757
+                                    </option>
+                                    <option value="B767"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B767' ? 'selected' : '' }}>
+                                        B767
+                                    </option>
+                                    <option value="B777"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B777' ? 'selected' : '' }}>
+                                        B777
+                                    </option>
+                                    <option value="B787"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'B787' ? 'selected' : '' }}>
+                                        B787
+                                    </option>
+                                    <option value="BAe146"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'BAe146' ? 'selected' : '' }}>
+                                        BAe146
+                                    </option>
+                                    <option value="BE400A"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'BE400A' ? 'selected' : '' }}>
+                                        BE400A
+                                    </option>
+                                    <option value="Beech-1900"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Beech-1900' ? 'selected' : '' }}>
+                                        Beech 1900
+                                    </option>
+                                    <option value="Beech-King-Air-350"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Beech-King-Air-350' ? 'selected' : '' }}>
+                                        Beech King Air 350
+                                    </option>
+                                    <option value="Bell"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bell' ? 'selected' : '' }}>
+                                        Bell
+                                    </option>
+                                    <option value="Boeing-Helicopter"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Boeing-Helicopter' ? 'selected' : '' }}>
+                                        Boeing Helicopter
+                                    </option>
+                                    <option value="Bombardier-300-(Challenger)"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bombardier-300-(Challenger)' ? 'selected' : '' }}>
+                                        Bombardier 300 (Challenger)
+                                    </option>
+                                    <option value="Bombardier-605-(Challenger)"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bombardier-605-(Challenger)' ? 'selected' : '' }}>
+                                        Bombardier 605 (Challenger)
+                                    </option>
+                                    <option value="Bombardier-850-(Challenger)"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bombardier-850-(Challenger)' ? 'selected' : '' }}>
+                                        Bombardier 850 (Challenger)
+                                    </option>
+                                    <option value="Bombardier-DHC-6"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bombardier-DHC-6' ? 'selected' : '' }}>
+                                        Bombardier DHC-6
+                                    </option>
+                                    <option value="Bombardier-DHC-7"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bombardier-DHC-7' ? 'selected' : '' }}>
+                                        Bombardier DHC-7
+                                    </option>
+                                    <option value="Bombardier-Global-5000"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bombardier-Global-5000' ? 'selected' : '' }}>
+                                        Bombardier Global 5000
+                                    </option>
+                                    <option value="Bombardier-Global-Express"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Bombardier-Global-Express' ? 'selected' : '' }}>
+                                        Bombardier Global Express
+                                    </option>
+                                    <option value="Brantly"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Brantly' ? 'selected' : '' }}>
+                                        Brantly
+                                    </option>
+                                    <option value="C130"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'C130' ? 'selected' : '' }}>
+                                        C130
+                                    </option>
+                                    <option value="Cessna-Bravo"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-Bravo' ? 'selected' : '' }}>
+                                        Cessna Bravo
+                                    </option>
+                                    <option value="Cessna-Caravan-C208"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-Caravan-C208' ? 'selected' : '' }}>
+                                        Cessna Caravan C208
+                                    </option>
+                                    <option value="Cessna-CJ2"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-CJ2' ? 'selected' : '' }}>
+                                        Cessna CJ2
+                                    </option>
+                                    <option value="Cessna-CJ3"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-CJ3' ? 'selected' : '' }}>
+                                        Cessna CJ3
+                                    </option>
+                                    <option value="Cessna-CJ4"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-CJ4' ? 'selected' : '' }}>
+                                        Cessna CJ4
+                                    </option>
+                                    <option value="Cessna-CJ7"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-CJ7' ? 'selected' : '' }}>
+                                        Cessna CJ7
+                                    </option>
+                                    <option value="Cessna-Encore"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-Encore' ? 'selected' : '' }}>
+                                        Cessna Encore
+                                    </option>
+                                    <option value="Cessna-Mustang"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-Mustang' ? 'selected' : '' }}>
+                                        Cessna Mustang
+                                    </option>
+                                    <option value="Cessna-Sovereign"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-Sovereign' ? 'selected' : '' }}>
+                                        Cessna Sovereign
+                                    </option>
+                                    <option value="Cessna-X"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-X' ? 'selected' : '' }}>
+                                        Cessna X
+                                    </option>
+                                    <option value="Cessna-XLS"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Cessna-XLS' ? 'selected' : '' }}>
+                                        Cessna XLS
+                                    </option>
+                                    <option value="CRJ100"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'CRJ100' ? 'selected' : '' }}>
+                                        CRJ100
+                                    </option>
+                                    <option value="CRJ1000"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'CRJ1000' ? 'selected' : '' }}>
+                                        CRJ1000
+                                    </option>
+                                    <option value="CRJ200"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'CRJ200' ? 'selected' : '' }}>
+                                        CRJ200
+                                    </option>
+                                    <option value="CRJ700"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'CRJ700' ? 'selected' : '' }}>
+                                        CRJ700
+                                    </option>
+                                    <option value="CRJ900"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'CRJ900' ? 'selected' : '' }}>
+                                        CRJ900
+                                    </option>
+                                    <option value="Dash-8"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Dash-8' ? 'selected' : '' }}>
+                                        Dash 8
+                                    </option>
+                                    <option value="Dassault-Falcon-2000DX"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Dassault-Falcon-2000DX' ? 'selected' : '' }}>
+                                        Dassault Falcon 2000DX
+                                    </option>
+                                    <option value="Dassault-Falcon-2000EX"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Dassault-Falcon-2000EX' ? 'selected' : '' }}>
+                                        Dassault Falcon 2000EX
+                                    </option>
+                                    <option value="Dassault-Falcon-5EX"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Dassault-Falcon-5EX' ? 'selected' : '' }}>
+                                        Dassault Falcon 5EX
+                                    </option>
+                                    <option value="Dassault-Falcon-7X"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Dassault-Falcon-7X' ? 'selected' : '' }}>
+                                        Dassault Falcon 7X
+                                    </option>
+                                    <option value="Dassault-Falcon-900DX"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Dassault-Falcon-900DX' ? 'selected' : '' }}>
+                                        Dassault Falcon 900DX
+                                    </option>
+                                    <option value="Dassault-Falcon-900EX"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Dassault-Falcon-900EX' ? 'selected' : '' }}>
+                                        Dassault Falcon 900EX
+                                    </option>
+                                    <option value="DC10"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'DC10' ? 'selected' : '' }}>
+                                        DC10
+                                    </option>
+                                    <option value="DC8"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'DC8' ? 'selected' : '' }}>
+                                        DC8
+                                    </option>
+                                    <option value="DC9"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'DC9' ? 'selected' : '' }}>
+                                        DC9
+                                    </option>
+                                    <option value="Embraer-EMB-110"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-EMB-110' ? 'selected' : '' }}>
+                                        Embraer EMB-110
+                                    </option>
+                                    <option value="Embraer-EMB-120"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-EMB-120' ? 'selected' : '' }}>
+                                        Embraer EMB-120
+                                    </option>
+                                    <option value="Embraer-EMB-135-145"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-EMB-135-145' ? 'selected' : '' }}>
+                                        Embraer EMB-135/145
+                                    </option>
+                                    <option value="Embraer-EMB-500"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-EMB-500' ? 'selected' : '' }}>
+                                        Embraer EMB-500
+                                    </option>
+                                    <option value="Embraer-EMB-505"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-EMB-505' ? 'selected' : '' }}>
+                                        Embraer EMB-505
+                                    </option>
+                                    <option value="Embraer-Legacy"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-Legacy' ? 'selected' : '' }}>
+                                        Embraer Legacy
+                                    </option>
+                                    <option value="Embraer-Legacy-450"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-Legacy-450' ? 'selected' : '' }}>
+                                        Embraer Legacy 450
+                                    </option>
+                                    <option value="Embraer-Legacy-500"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-Legacy-500' ? 'selected' : '' }}>
+                                        Embraer Legacy 500
+                                    </option>
+                                    <option value="Embraer-Legacy-600"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-Legacy-600' ? 'selected' : '' }}>
+                                        Embraer Legacy 600
+                                    </option>
+                                    <option value="Embraer-Linage-1000"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Embraer-Linage-1000' ? 'selected' : '' }}>
+                                        Embraer Linage 1000
+                                    </option>
+                                    <option value="ERJ-170"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ERJ-170' ? 'selected' : '' }}>
+                                        ERJ-170
+                                    </option>
+                                    <option value="ERJ-175"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ERJ-175' ? 'selected' : '' }}>
+                                        ERJ-175
+                                    </option>
+                                    <option value="ERJ-190"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ERJ-190' ? 'selected' : '' }}>
+                                        ERJ-190
+                                    </option>
+                                    <option value="ERJ-195"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'ERJ-195' ? 'selected' : '' }}>
+                                        ERJ-195
+                                    </option>
+                                    <option value="Eurocopter"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Eurocopter' ? 'selected' : '' }}>
+                                        Eurocopter
+                                    </option>
+                                    <option value="Fokker-100"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Fokker-100' ? 'selected' : '' }}>
+                                        Fokker 100
+                                    </option>
+                                    <option value="Fokker-27"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Fokker-27' ? 'selected' : '' }}>
+                                        Fokker 27
+                                    </option>
+                                    <option value="Fokker-28"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Fokker-28' ? 'selected' : '' }}>
+                                        Fokker 28
+                                    </option>
+                                    <option value="Fokker-50"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Fokker-50' ? 'selected' : '' }}>
+                                        Fokker 50
+                                    </option>
+                                    <option value="Fokker-70"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Fokker-70' ? 'selected' : '' }}>
+                                        Fokker 70
+                                    </option>
+                                    <option value="Fokker-900"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Fokker-900' ? 'selected' : '' }}>
+                                        Fokker 900
+                                    </option>
+                                    <option value="Gulfstream-150"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-150' ? 'selected' : '' }}>
+                                        Gulfstream 150
+                                    </option>
+                                    <option value="Gulfstream-200"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-200' ? 'selected' : '' }}>
+                                        Gulfstream 200
+                                    </option>
+                                    <option value="Gulfstream-250"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-250' ? 'selected' : '' }}>
+                                        Gulfstream 250
+                                    </option>
+                                    <option value="Gulfstream-350"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-350' ? 'selected' : '' }}>
+                                        Gulfstream 350
+                                    </option>
+                                    <option value="Gulfstream-400-Gulfstream-IV"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-400-Gulfstream-IV' ? 'selected' : '' }}>
+                                        Gulfstream 400/Gulfstream IV
+                                    </option>
+                                    <option value="Gulfstream-450"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-450' ? 'selected' : '' }}>
+                                        Gulfstream 450
+                                    </option>
+                                    <option value="Gulfstream-500"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-500' ? 'selected' : '' }}>
+                                        Gulfstream 500
+                                    </option>
+                                    <option value="Gulfstream-550"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-550' ? 'selected' : '' }}>
+                                        Gulfstream 550
+                                    </option>
+                                    <option value="Gulfstream-650"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Gulfstream-650' ? 'selected' : '' }}>
+                                        Gulfstream 650
+                                    </option>
+                                    <option value="Hawker-200"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Hawker-200' ? 'selected' : '' }}>
+                                        Hawker 200
+                                    </option>
+                                    <option value="Hawker-4000"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Hawker-4000' ? 'selected' : '' }}>
+                                        Hawker 4000
+                                    </option>
+                                    <option value="Hawker-400XP"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Hawker-400XP' ? 'selected' : '' }}>
+                                        Hawker 400XP
+                                    </option>
+                                    <option value="Hawker-900XP"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Hawker-900XP' ? 'selected' : '' }}>
+                                        Hawker 900XP
+                                    </option>
+                                    <option value="HS125-800A"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'HS125-800A' ? 'selected' : '' }}>
+                                        HS125-800A
+                                    </option>
+                                    <option value="HS748"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'HS748' ? 'selected' : '' }}>
+                                        HS748
+                                    </option>
+                                    <option value="Jetstream-31-32-41"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Jetstream-31-32-41' ? 'selected' : '' }}>
+                                        Jetstream 31/32/41
+                                    </option>
+                                    <option value="Kawasaki"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Kawasaki' ? 'selected' : '' }}>
+                                        Kawasaki
+                                    </option>
+                                    <option value="L-1011"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'L-1011' ? 'selected' : '' }}>
+                                        L-1011
+                                    </option>
+                                    <option value="Learjet-23-29"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-23-29' ? 'selected' : '' }}>
+                                        Learjet 23-29
+                                    </option>
+                                    <option value="Learjet-35"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-35' ? 'selected' : '' }}>
+                                        Learjet 35
+                                    </option>
+                                    <option value="Learjet-36"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-36' ? 'selected' : '' }}>
+                                        Learjet 36
+                                    </option>
+                                    <option value="Learjet-40"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-40' ? 'selected' : '' }}>
+                                        Learjet 40
+                                    </option>
+                                    <option value="Learjet-45"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-45' ? 'selected' : '' }}>
+                                        Learjet 45
+                                    </option>
+                                    <option value="Learjet-55"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-55' ? 'selected' : '' }}>
+                                        Learjet 55
+                                    </option>
+                                    <option value="Learjet-60"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-60' ? 'selected' : '' }}>
+                                        Learjet 60
+                                    </option>
+                                    <option value="Learjet-85"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Learjet-85' ? 'selected' : '' }}>
+                                        Learjet 85
+                                    </option>
+                                    <option value="MD-Helicopters"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'MD-Helicopters' ? 'selected' : '' }}>
+                                        MD Helicopters
+                                    </option>
+                                    <option value="MD-11"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'MD-11' ? 'selected' : '' }}>
+                                        MD-11
+                                    </option>
+                                    <option value="MD-80-90"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'MD-80-90' ? 'selected' : '' }}>
+                                        MD-80/90
+                                    </option>
+                                    <option value="Other---Business-Jet"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Business-Jet' ? 'selected' : '' }}>
+                                        Other - Business Jet
+                                    </option>
+                                    <option value="Other---Fixed-Wing-Piston-Multi-Engine"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Fixed-Wing-Piston-Multi-Engine' ? 'selected' : '' }}>
+                                        Other - Fixed Wing Piston Multi Engine
+                                    </option>
+                                    <option value="Other---Fixed-Wing-Piston-Single-Engine"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Fixed-Wing-Piston-Single-Engine' ? 'selected' : '' }}>
+                                        Other - Fixed Wing Piston Single Engine
+                                    </option>
+                                    <option value="Other---Helicopter-Piston-Multi-Engine"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Helicopter-Piston-Multi-Engine' ? 'selected' : '' }}>
+                                        Other - Helicopter Piston Multi Engine
+                                    </option>
+                                    <option value="Other---Helicopter-Piston-Single-Engine"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Helicopter-Piston-Single-Engine' ? 'selected' : '' }}>
+                                        Other - Helicopter Piston Single Engine
+                                    </option>
+                                    <option value="Other---Helicopter-Turbine-Multi-Engine"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Helicopter-Turbine-Multi-Engine' ? 'selected' : '' }}>
+                                        Other - Helicopter Turbine Multi Engine
+                                    </option>
+                                    <option value="Other---Military-Fighter-Jet"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Military-Fighter-Jet' ? 'selected' : '' }}>
+                                        Other - Military Fighter Jet
+                                    </option>
+                                    <option value="Other---Military-Fixed-Wing"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Military-Fixed-Wing' ? 'selected' : '' }}>
+                                        Other - Military Fixed Wing
+                                    </option>
+                                    <option value="Other---Turbo-Prop-Multi-Engine"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Turbo-Prop-Multi-Engine' ? 'selected' : '' }}>
+                                        Other - Turbo Prop Multi Engine
+                                    </option>
+                                    <option value="Other---Turbo-Prop-Single-Engine"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Turbo-Prop-Single-Engine' ? 'selected' : '' }}>
+                                        Other - Turbo Prop Single Engine
+                                    </option>
+                                    <option value="Other---Turbojet-Turbo-Fan"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other---Turbojet-Turbo-Fan' ? 'selected' : '' }}>
+                                        Other - Turbojet/Turbo Fan
+                                    </option>
+                                    <option value="Robinson"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Robinson' ? 'selected' : '' }}>
+                                        Robinson
+                                    </option>
+                                    <option value="SA227-Metroliner"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'SA227-Metroliner' ? 'selected' : '' }}>
+                                        SA227 Metroliner
+                                    </option>
+                                    <option value="Saab-2000"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Saab-2000' ? 'selected' : '' }}>
+                                        Saab 2000
+                                    </option>
+                                    <option value="Saab-340-340B"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Saab-340-340B' ? 'selected' : '' }}>
+                                        Saab 340/340B
+                                    </option>
+                                    <option value="Sikorsky-Civilian"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Sikorsky-Civilian' ? 'selected' : '' }}>
+                                        Sikorsky Civilian
+                                    </option>
+
+                                    <option value="Sikorsky-Military"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Sikorsky-Military' ? 'selected' : '' }}>
+                                        Sikorsky Military
+                                    </option>
+
+                                    <option value="Sikorsky-S76"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Sikorsky-S76' ? 'selected' : '' }}>
+                                        Sikorsky S76
+                                    </option>
+
+                                    <option value="Other"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_fleet == 'Other' ? 'selected' : '' }}>
+                                        Other
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -118,6 +700,61 @@
                                     <option value="check-captain"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'check-captain' ? 'selected' : '' }}>
                                         Check Captain</option>
+                                    <option value="First-Office"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'First-Office' ? 'selected' : '' }}>
+                                        First Officer</option>
+
+                                    <option value="Flight-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Flight-Instructor' ? 'selected' : '' }}>
+                                        Flight Instructor</option>
+
+                                    <option value="Line-Training-Captain-Line-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Line-Training-Captain-Line-Instructor' ? 'selected' : '' }}>
+                                        Line Training Captain/Line Instructor</option>
+
+                                    <option value="Relief-Cruise-Captain"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Relief-Cruise-Captain' ? 'selected' : '' }}>
+                                        Relief/Cruise Captain</option>
+
+                                    <option value="Second-Officer"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Second-Officer' ? 'selected' : '' }}>
+                                        Second Officer</option>
+
+                                    <option value="Senior-First-Officer"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Senior-First-Officer' ? 'selected' : '' }}>
+                                        Senior First Officer</option>
+
+                                    <option value="Simulator-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Simulator-Instructor' ? 'selected' : '' }}>
+                                        Simulator Instructor</option>
+
+                                    <option value="Student-Pilot"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Student-Pilot' ? 'selected' : '' }}>
+                                        Student Pilot</option>
+
+                                    <option value="Synthetic-Flight-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Synthetic-Flight-Instructor' ? 'selected' : '' }}>
+                                        Synthetic Flight Instructor</option>
+
+                                    <option value="Test-Pilot"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Test-Pilot' ? 'selected' : '' }}>
+                                        Test Pilot</option>
+
+                                    <option value="Type-Rating-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Type Rating Instructor' ? 'selected' : '' }}>
+                                        Type Rating Instructor</option>
+
+                                    <option value="Type-Rating-Designated-Flight-Examiner"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Type-Rating-Designated-Flight-Examiner' ? 'selected' : '' }}>
+                                        Type Rating/Designated/Flight Examiner</option>
+
+                                    <option value="Synthetic-Flight-Examiner"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Synthetic-Flight-Examiner' ? 'selected' : '' }}>
+                                        Synthetic Flight Examiner</option>
+
+                                    <option value="Other"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Other' ? 'selected' : '' }}>
+                                        Other</option>
                                 </select>
                             </div>
                         </div>
@@ -127,21 +764,53 @@
                                 <label class="form-label mb-1">Licence/Certificate<span
                                         class="text-danger">*</span></label>
                                 <select class="form-control selects1" name="certificate_no" required>
-                                    <option value="atpl-heli-licence"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'atpl-heli-licence' ? 'selected' : '' }}>
-                                        ATPL - Heli Licence</option>
-                                    <option value="cpl"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'cpl' ? 'selected' : '' }}>
+                                    <option value="two"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'two' ? 'selected' : '' }}>
+                                        ATPL-Heli
+                                        Licence</option>
+                                    <option value="Commercial-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Commercial-Pilot-Licence' ? 'selected' : '' }}>
                                         Commercial Pilot Licence</option>
-                                    <option value="cpl-heli"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'cpl-heli' ? 'selected' : '' }}>
+                                    <option value="Commercial-Pilot-Licence-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Commercial-Pilot-Licence-Heli' ? 'selected' : '' }}>
                                         Commercial Pilot Licence - Heli</option>
-                                    <option value="cpl-atpl-frozen"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'cpl-atpl-frozen' ? 'selected' : '' }}>
-                                        CPL including ATPL Frozen</option>
-                                    <option value="mpl"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'cpl-atpl-frozen' ? 'selected' : '' }}>
+                                    <option value="CPL-inc.-ATPL-Frozen"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'CPL-inc.-ATPL-Frozen' ? 'selected' : '' }}>
+                                        CPL inc. ATPL Frozen</option>
+                                    <option value="Multi-Crew-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Multi-Crew-Pilot-Licence' ? 'selected' : '' }}>
                                         Multi-Crew Pilot Licence</option>
+
+
+                                    <option value="Recreational-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Recreational-Pilot-Licence' ? 'selected' : '' }}>
+                                        Recreational Pilot Licence</option>
+
+                                    <option value="Private-Pilot-Licence-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Private-Pilot-Licence-Heli' ? 'selected' : '' }}>
+                                        Private Pilot Licence-Heli</option>
+
+                                    <option value="Frozen-ATPL-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Frozen-ATPL-Licence' ? 'selected' : '' }}>
+                                        Frozen ATPL Licence</option>
+
+                                    <option value="Recreational-Pilot-Licence.-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Recreational-Pilot-Licence.-Heli' ? 'selected' : '' }}>
+                                        Recreational Pilot
+                                        Licence.-Heli</option>
+
+
+                                    <option value="Private-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Private-Pilot-Licence' ? 'selected' : '' }}>
+                                        Private Pilot Licence</option>
+
+                                    <option value="Student-Pilot-Licence-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Student-Pilot-Licence-Heli' ? 'selected' : '' }}>
+                                        Student Pilot Licence-Heli</option>
+
+                                    <option value="Other"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Other' ? 'selected' : '' }}>
+                                        Other</option>
                                 </select>
                             </div>
                         </div>
@@ -161,7 +830,6 @@
                                 </select>
                             </div>
                         </div>
-
 
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
@@ -374,6 +1042,20 @@
                             <div class="form-group">
                                 <label class="form-label mb-1">Select Latest Rank<span
                                         class="text-danger">*</span></label>
+                                {{-- <select class="form-control selects1" name="latest_rank" required>
+                                    <option value="captain"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'captain' ? 'selected' : '' }}>
+                                        Captain</option>
+                                    <option value="airman"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'airman' ? 'selected' : '' }}>
+                                        Check Airman</option>
+                                    <option value="check-captain"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'check-captain' ? 'selected' : '' }}>
+                                        Check Captain</option>
+                                </select> --}}
+
+
+
                                 <select class="form-control selects1" name="latest_rank" required>
                                     <option value="captain"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'captain' ? 'selected' : '' }}>
@@ -384,6 +1066,61 @@
                                     <option value="check-captain"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'check-captain' ? 'selected' : '' }}>
                                         Check Captain</option>
+                                    <option value="First-Office"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'First-Office' ? 'selected' : '' }}>
+                                        First Officer</option>
+
+                                    <option value="Flight-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Flight-Instructor' ? 'selected' : '' }}>
+                                        Flight Instructor</option>
+
+                                    <option value="Line-Training-Captain-Line-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Line-Training-Captain-Line-Instructor' ? 'selected' : '' }}>
+                                        Line Training Captain/Line Instructor</option>
+
+                                    <option value="Relief-Cruise-Captain"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Relief-Cruise-Captain' ? 'selected' : '' }}>
+                                        Relief/Cruise Captain</option>
+
+                                    <option value="Second-Officer"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Second-Officer' ? 'selected' : '' }}>
+                                        Second Officer</option>
+
+                                    <option value="Senior-First-Officer"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Senior-First-Officer' ? 'selected' : '' }}>
+                                        Senior First Officer</option>
+
+                                    <option value="Simulator-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Simulator-Instructor' ? 'selected' : '' }}>
+                                        Simulator Instructor</option>
+
+                                    <option value="Student-Pilot"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Student-Pilot' ? 'selected' : '' }}>
+                                        Student Pilot</option>
+
+                                    <option value="Synthetic-Flight-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Synthetic-Flight-Instructor' ? 'selected' : '' }}>
+                                        Synthetic Flight Instructor</option>
+
+                                    <option value="Test-Pilot"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Test-Pilot' ? 'selected' : '' }}>
+                                        Test Pilot</option>
+
+                                    <option value="Type-Rating-Instructor"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Type Rating Instructor' ? 'selected' : '' }}>
+                                        Type Rating Instructor</option>
+
+                                    <option value="Type-Rating-Designated-Flight-Examiner"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Type-Rating-Designated-Flight-Examiner' ? 'selected' : '' }}>
+                                        Type Rating/Designated/Flight Examiner</option>
+
+                                    <option value="Synthetic-Flight-Examiner"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Synthetic-Flight-Examiner' ? 'selected' : '' }}>
+                                        Synthetic Flight Examiner</option>
+
+                                    <option value="Other"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->latest_rank == 'Other' ? 'selected' : '' }}>
+                                        Other</option>
                                 </select>
                             </div>
                         </div>
@@ -392,7 +1129,7 @@
                             <div class="form-group">
                                 <label class="form-label mb-1">Licence/Certificate<span
                                         class="text-danger">*</span></label>
-                                <select class="form-control selects1" name="certificate_no" required>
+                                {{-- <select class="form-control selects1" name="certificate_no" required>
                                     <option value="atpl-heli-licence"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'atpl-heli-licence' ? 'selected' : '' }}>
                                         ATPL - Heli Licence</option>
@@ -408,9 +1145,60 @@
                                     <option value="mpl"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'cpl-atpl-frozen' ? 'selected' : '' }}>
                                         Multi-Crew Pilot Licence</option>
+                                </select> --}}
+
+                                <select class="form-control selects1" name="certificate_no" required>
+                                    <option value="two"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'two' ? 'selected' : '' }}>
+                                        ATPL-Heli
+                                        Licence</option>
+                                    <option value="Commercial-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Commercial-Pilot-Licence' ? 'selected' : '' }}>
+                                        Commercial Pilot Licence</option>
+                                    <option value="Commercial-Pilot-Licence-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Commercial-Pilot-Licence-Heli' ? 'selected' : '' }}>
+                                        Commercial Pilot Licence - Heli</option>
+                                    <option value="CPL-inc.-ATPL-Frozen"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'CPL-inc.-ATPL-Frozen' ? 'selected' : '' }}>
+                                        CPL inc. ATPL Frozen</option>
+                                    <option value="Multi-Crew-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Multi-Crew-Pilot-Licence' ? 'selected' : '' }}>
+                                        Multi-Crew Pilot Licence</option>
+
+
+                                    <option value="Recreational-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Recreational-Pilot-Licence' ? 'selected' : '' }}>
+                                        Recreational Pilot Licence</option>
+
+                                    <option value="Private-Pilot-Licence-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Private-Pilot-Licence-Heli' ? 'selected' : '' }}>
+                                        Private Pilot Licence-Heli</option>
+
+                                    <option value="Frozen-ATPL-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Frozen-ATPL-Licence' ? 'selected' : '' }}>
+                                        Frozen ATPL Licence</option>
+
+                                    <option value="Recreational-Pilot-Licence.-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Recreational-Pilot-Licence.-Heli' ? 'selected' : '' }}>
+                                        Recreational Pilot
+                                        Licence.-Heli</option>
+
+
+                                    <option value="Private-Pilot-Licence"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Private-Pilot-Licence' ? 'selected' : '' }}>
+                                        Private Pilot Licence</option>
+
+                                    <option value="Student-Pilot-Licence-Heli"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Student-Pilot-Licence-Heli' ? 'selected' : '' }}>
+                                        Student Pilot Licence-Heli</option>
+
+                                    <option value="Other"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Other' ? 'selected' : '' }}>
+                                        Other</option>
                                 </select>
                             </div>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label mb-1">Country of Licence/Approval<span
@@ -443,12 +1231,126 @@
                                         class="text-danger">*</span></label>
                                 <select class="form-control selects1" name="engineer_latest_airframe" required>
                                     <option disabled>Select Latest Airframe</option>
-                                    <option value="A2201"
+                                    {{-- <option value="A2201"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A2201' ? 'selected' : '' }}>
                                         A2201</option>
                                     <option value="A3101"
                                         {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A3101' ? 'selected' : '' }}>
-                                        A3101</option>
+                                        A3101</option> --}}
+                                    <option disabled>Select Latest Airframe</option>
+                                    <option value="one" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'one' ? 'selected' : '' }}>
+                                        A220
+                                    </option>
+                                    <option value="two" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'two' ? 'selected' : '' }}>
+                                        A300-600
+                                    </option>
+                                    <option value="A300-B4" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A300-B4' ? 'selected' : '' }}>
+                                        A300-B4
+                                    </option>
+                                    <option value="A310" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A310' ? 'selected' : '' }}>
+                                        A310
+                                    </option>
+                                    <option value="A320-Family" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A320-Family' ? 'selected' : '' }}>
+                                        A320 Family
+                                    </option>
+                                    <option value="A330" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A330' ? 'selected' : '' }}>
+                                        A330
+                                    </option>
+                                    <option value="A340" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A340' ? 'selected' : '' }}>
+                                        A340
+                                    </option>
+                                    <option value="A350" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A350' ? 'selected' : '' }}>
+                                        A350
+                                    </option>
+                                    <option value="A380" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'A380' ? 'selected' : '' }}>
+                                        A380
+                                    </option>
+                                    <option value="Agusta-Westland" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Agusta-Westland' ? 'selected' : '' }}>
+                                        Agusta/Westland
+                                    </option>
+                                    <option value="AgustaWestland-AW139" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'AgustaWestland-AW139' ? 'selected' : '' }}>
+                                        AgustaWestland AW139
+                                    </option>
+                                    <option value="ATR-42-300-400" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'ATR-42-300-400' ? 'selected' : '' }}>
+                                        ATR 42 300/400
+                                    </option>
+                                    <option value="ATR-42-500" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'ATR-42-500' ? 'selected' : '' }}>
+                                        ATR 42 500
+                                    </option>
+                                    <option value="ATR-42-600" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'ATR-42-600' ? 'selected' : '' }}>
+                                        ATR 42 600
+                                    </option>
+                                    <option value="ATR-72-100-200-300" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'ATR-72-100-200-300' ? 'selected' : '' }}>
+                                        ATR 72 100/200/300
+                                    </option>
+                                    <option value="ATR-72-500" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'ATR-72-500' ? 'selected' : '' }}>
+                                        ATR 72 500
+                                    </option>
+                                    <option value="ATR-72-600" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'ATR-72-600' ? 'selected' : '' }}>
+                                        ATR 72 600
+                                    </option>
+                                    <option value="AVRO-RJ-100" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'AVRO-RJ-100' ? 'selected' : '' }}>
+                                        AVRO RJ 100
+                                    </option>
+                                    <option value="AVRO-RJ-115" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'AVRO-RJ-115' ? 'selected' : '' }}>
+                                        AVRO RJ 115
+                                    </option>
+                                    <option value="AVRO-RJ-70" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'AVRO-RJ-70' ? 'selected' : '' }}>
+                                        AVRO RJ 70
+                                    </option>
+                                    <option value="AVRO-RJ-85" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'AVRO-RJ-85' ? 'selected' : '' }}>
+                                        AVRO RJ 85
+                                    </option>
+                                    <option value="AVRO-RJX" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'AVRO-RJX' ? 'selected' : '' }}>
+                                        AVRO RJX
+                                    </option>
+                                    <option value="Avroliner" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Avroliner' ? 'selected' : '' }}>
+                                        Avroliner
+                                    </option>
+                                    <option value="B707" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'B707' ? 'selected' : '' }}>
+                                        B707
+                                    </option>
+                                    <option value="B717" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'B717' ? 'selected' : '' }}>
+                                        B717
+                                    </option>
+                                    <option value="B727" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'B727' ? 'selected' : '' }}>
+                                        B727
+                                    </option>
+                                    <option value="B737-1-200" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'B737-1-200' ? 'selected' : '' }}>
+                                        B737-1/200
+                                    </option>
+                                    <option value="B737-3-4-500-Analog" data-calculation="0"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'B737-3-4-500-Analog' ? 'selected' : '' }}>
+                                        B737-3/4/500 Analog
+                                    </option>
+
                                 </select>
                             </div>
                         </div>
@@ -459,12 +1361,34 @@
                                         class="text-danger">*</span></label>
                                 <select class="form-control selects1" name="engineer_current_engine_type" required>
                                     <option disabled>Select Current Engine Type</option>
-                                    <option value="Rolls Royce"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Rolls Royce' ? 'selected' : '' }}>
+                                    <option value="one"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'one' ? 'selected' : '' }}>
                                         Rolls Royce</option>
-                                    <option value="Mahindra"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Mahindra' ? 'selected' : '' }}>
-                                        Mahindra</option>
+                                    <option value="two"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'two' ? 'selected' : '' }}>
+                                        CFM</option>
+
+                                    <option value="GE-Aviation"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'GE-Aviation' ? 'selected' : '' }}>
+                                        GE
+                                        Aviation</option>
+
+                                    <option value="Pratt-and-Whitney"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Pratt-and-Whitney' ? 'selected' : '' }}>
+                                        Pratt and Whitney</option>
+
+                                    <option value="Honeywell"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Honeywell' ? 'selected' : '' }}>
+                                        Honeywell</option>
+
+
+                                    <option value="Rotary"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Rotary' ? 'selected' : '' }}>
+                                        Rotary</option>
+
+                                    <option value="Other"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->certificate_no == 'Other' ? 'selected' : '' }}>
+                                        Other</option>
                                 </select>
                             </div>
                         </div>
@@ -572,6 +1496,7 @@
                                     placeholder="Date of Last Flight" class="form-control " required="">
                             </div>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label mb-1">Country of Licence/Approval<span
@@ -1045,7 +1970,8 @@
                         </div>
                         {{-- Employment Type --}}
                         <div class="col-md-12 mb-4">
-                            <label class="form-label mb-2">Employment type <span class="text-danger">*</span></label>
+                            <label class="form-label mb-2">Employment type <span
+                                    class="text-danger">*</span></label>
                             <div class="form-group d-flex gap-3 flex-wrap">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="employment_type"
@@ -1055,7 +1981,8 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="employment_type"
                                         id="employmentTypeInternship" value="intern" checked>
-                                    <label class="form-check-label" for="employmentTypeInternship">Internship</label>
+                                    <label class="form-check-label"
+                                        for="employmentTypeInternship">Internship</label>
                                 </div>
                             </div>
                         </div>
@@ -1115,7 +2042,8 @@
                         {{-- Joining Date --}}
                         <div class="col-md-6 mb-4">
                             <div class="form-group">
-                                <label class="form-label mb-0">Joining date<span class="text-danger">*</span></label>
+                                <label class="form-label mb-0">Joining date<span
+                                        class="text-danger">*</span></label>
                                 <input type="date" class="form-control" name="joining_date" required>
                             </div>
                         </div>
@@ -1128,9 +2056,10 @@
                                     class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-4" id="noticePeriodWrapper" style="display: none;">
                             <div class="form-group">
-                                <label class="form-label mb-0">Notice period<span class="text-danger">*</span></label>
+                                <label class="form-label mb-0">Notice period<span
+                                        class="text-danger">*</span></label>
                                 <select class="form-control selects1" name="notice_period" required>
                                     <option disabled>Select Notice Period</option>
                                     <option value="15 Days or Less">15 Days or Less</option>
@@ -1141,12 +2070,12 @@
                             </div>
                         </div>
                         {{-- Job Profile --}}
-                        <div class="col-md-12 mb-4">
+                        {{-- <div class="col-md-12 mb-4">
                             <div class="form-group">
                                 <label class="form-label mb-0">Job profile<span class="text-danger">*</span></label>
                                 <textarea class="form-control" name="job_profile" placeholder="Type here..." required></textarea>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     {{-- Modal Footer --}}
@@ -1163,9 +2092,9 @@
 <!-- Employment Modal End -->
 
 
-
 <!-- Edit Employment Modal Start -->
-<div class="modal fade" id="edit_employment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit_employment" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -1242,9 +2171,10 @@
                                     class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md-12 mb-4">
+                        <div class="col-md-12 mb-4" id="noticePeriodWrapper" style="display: none;">
                             <div class="form-group">
-                                <label class="form-label mb-0">Notice period<span class="text-danger">*</span></label>
+                                <label class="form-label mb-0">Notice period<span
+                                        class="text-danger">*</span></label>
                                 <select class="form-control selects1" name="notice_period" required>
                                     <option disabled>Select Notice Period</option>
                                     <option value="15 Days or Less">15 Days or Less</option>
@@ -2091,21 +3021,21 @@
             }]
         });
 
-        $('.view_all_job').slick({
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            autoplay: false,
-            autoplaySpeed: 2000,
-            responsive: [{
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1
-                }
-            }]
-        });
+        // $('.view_all_job').slick({
+        //     dots: false,
+        //     infinite: true,
+        //     speed: 500,
+        //     slidesToShow: 2,
+        //     slidesToScroll: 1,
+        //     autoplay: false,
+        //     autoplaySpeed: 2000,
+        //     responsive: [{
+        //         breakpoint: 768,
+        //         settings: {
+        //             slidesToShow: 1
+        //         }
+        //     }]
+        // });
     });
 </script>
 
@@ -2319,6 +3249,17 @@
                 }
             });
         });
+
+        $('input[name="is_current_employment"]').on('change', function() {
+            if ($(this).val() == "0") {
+                $('#noticePeriodWrapper').show();
+                $('select[name="notice_period"]').attr('required', true);
+            } else {
+                $('#noticePeriodWrapper').hide();
+                $('select[name="notice_period"]').removeAttr('required').val('');
+            }
+        });
+        $('input[name="is_current_employment"]:checked').trigger('change');
     });
 </script>
 

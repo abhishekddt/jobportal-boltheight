@@ -28,11 +28,14 @@ class HomeController extends Controller
             $candidate = CondidateDetail::where('user_id', $user->id)->first();
             $lastUpdated = $candidate->updated_at ?? $user->updated_at;
             $lastUpdatedHuman = $lastUpdated ? Carbon::parse($lastUpdated)->diffForHumans() : 'Not updated yet';
+            $employmenthome = EmploymentDetail::where('user_id', auth()->id())
+                ->latest('created_at')
+                ->first();
             $countries = Country::all();
             $states = State::all();
             $cities = City::all();
 
-            return view('frontend.home', compact('user', 'candidate', 'lastUpdatedHuman', 'countries', 'states', 'cities'));
+            return view('frontend.home', compact('user', 'candidate', 'lastUpdatedHuman', 'countries', 'states', 'cities', 'employmenthome'));
         } catch (\Exception $e) {
             abort(500);
         }
@@ -45,11 +48,14 @@ class HomeController extends Controller
         $countries = Country::all();
         $states = State::all();
         $cities = City::all();
+        $employmenthome = EmploymentDetail::where('user_id', auth()->id())
+            ->latest('created_at')
+            ->first();
         $educations = CandidateEducation::where('user_id', auth()->id())
             ->orderBy('course', 'asc')
             ->get();
 
-        $employments = EmploymentDetail::where('user_id', auth()->id())->orderBy('experience', 'asc')->get();
+        $employments = EmploymentDetail::where('user_id', auth()->id())->orderBy('experience', 'desc')->get();
         $itskills = ITSkill::where('user_id', auth()->id())
             ->orderBy('skill', 'desc')
             ->get();
@@ -98,17 +104,30 @@ class HomeController extends Controller
             'itskills',
             'candidateDetail',
             'employments',
+            'employmenthome',
         ));
     }
 
     public function jobsdashboard()
     {
-        return view('frontend.jobs');
+        $user = auth()->user();
+        $candidate = CondidateDetail::where('user_id', $user->id)->first();
+        $countries = Country::all();
+        $states = State::all();
+        $cities = City::all();
+
+        return view('frontend.jobs', compact('user', 'candidate', 'countries', 'states', 'cities'));
     }
+
 
     public function applyJobs()
     {
-        return view('frontend.apply_jobs');
+        $user = auth()->user();
+        $candidate = CondidateDetail::where('user_id', $user->id)->first();
+        $countries = Country::all();
+        $states = State::all();
+        $cities = City::all();
+        return view('frontend.apply_jobs', compact('user', 'candidate', 'countries', 'states', 'cities'));
     }
 
     public function aviation()
@@ -120,12 +139,15 @@ class HomeController extends Controller
             'user',
         ])->where('user_id', $user->id)->first();
 
+        $employmenthome = EmploymentDetail::where('user_id', auth()->id())
+            ->latest('created_at')
+            ->first();
 
         $candidate = CondidateDetail::where('user_id', $user->id)->first();
         $countries = Country::all();
         $states = State::all();
         $cities = City::all();
-        $employments = EmploymentDetail::where('user_id', auth()->id())->orderBy('experience', 'asc')->get();
+        $employments = EmploymentDetail::where('user_id', auth()->id())->orderBy('experience', 'desc')->get();
         $educations = CandidateEducation::where('user_id', auth()->id())
             ->orderBy('course', 'asc')
             ->get();
@@ -172,6 +194,7 @@ class HomeController extends Controller
             'itskills',
             'candidateDetail',
             'employments',
+            'employmenthome',
         ));
     }
 
@@ -300,10 +323,9 @@ class HomeController extends Controller
                 'job_title' => 'required',
                 'joining_date' => 'required',
                 'current_salary' => 'required',
-                'notice_period' => 'required',
-                'job_profile' => 'required',
                 'is_current_employment' => 'required',
                 'employment_type' => 'required',
+                'notice_period' => 'required_if:is_current_employment,0|nullable',
             ]);
 
             $employment = new EmploymentDetail();
@@ -315,7 +337,6 @@ class HomeController extends Controller
             $employment->joining_date = $request->joining_date;
             $employment->current_salary = $request->current_salary;
             $employment->notice_period = $request->notice_period;
-            $employment->job_profile = $request->job_profile;
             $employment->is_current_employment = $request->is_current_employment;
             $employment->employment_type = $request->employment_type;
             $employment->save();
@@ -340,7 +361,7 @@ class HomeController extends Controller
             'company_name' => 'required|string|max:255',
             'job_title' => 'required|string|max:255',
             'current_salary' => 'required|numeric',
-            'notice_period' => 'required',
+            'notice_period' => 'required_if:is_current_employment,0|nullable',
         ]);
 
         $user = auth()->user();

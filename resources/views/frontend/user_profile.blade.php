@@ -41,9 +41,9 @@
 
                                         <span class="d-felx gap-3 text-muted textmuteds">
                                             <i class="ri-map-pin-line"></i>
-                                            {{ optional($cities->firstWhere('id', $user->city))->name ?? 'City' }},
-                                            {{ optional($states->firstWhere('id', $user->state))->name ?? 'State' }},
-                                            {{ optional($countries->firstWhere('id', $user->country))->name ?? 'Country' }}
+                                            {{ optional($cities->firstWhere('id', $user->city_id))->name ?? 'City' }},
+                                            {{ optional($states->firstWhere('id', $user->state_id))->name ?? 'State' }},
+                                            {{ optional($countries->firstWhere('id', $user->country_id))->name ?? 'Country' }}
                                         </span>
 
                                         <span class="d-flex gap-1 text-muted">
@@ -186,8 +186,16 @@
                                     <a class="text-decoration-none text-dark" data-bs-toggle="modal"
                                         data-bs-target="#skill_add"><i class="ri-pencil-line"></i></a>
                                 </span>
-                                <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#skill_add">Add skills</a>
+                                {{-- <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#skill_add">Add skills</a> --}}
+
+                                @if (empty($skills))
+                                    <a class="add_profile_details text-decoration-none" type="button"
+                                        data-bs-toggle="modal" data-bs-target="#skill_add">
+                                        Add skills
+                                    </a>
+                                @endif
+
                             </div>
                             <ul class="keySkillstype list-unstyled d-flex flex-wrap m-0">
                                 @forelse ($skills as $skill)
@@ -292,7 +300,7 @@
                                                 <td>{{ $employment->company_name }}</td>
                                                 <td>{{ $employment->job_title }}</td>
                                                 <td>{{ $employment->current_salary }}</td>
-                                                <td>{{ $employment->notice_period }}</td>
+                                                {{-- <td>{{ $employment->notice_period }}</td> --}}
                                                 {{-- <td>
                                                     @if ($employment->is_current_employment == '0')
                                                         {{ 'No' }}
@@ -309,7 +317,6 @@
                                                             data-company_name="{{ $employment->company_name }}"
                                                             data-job_title="{{ $employment->job_title }}"
                                                             data-current_salary="{{ $employment->current_salary }}"
-                                                            data-notice_period="{{ $employment->notice_period }}"
                                                             data-bs-toggle="modal" data-bs-target="#edit_employment">
                                                             <i class="ri-pencil-line"></i>
                                                         </button>
@@ -407,8 +414,15 @@
                                     <a class="text-decoration-none text-dark" data-bs-toggle="modal"
                                         data-bs-target="#add_profile_summry"><i class="ri-pencil-line"></i></a>
                                 </span>
-                                <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#profile_summry">Add Profile summary </a>
+                                {{-- <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#profile_summry">Add Profile summary </a> --}}
+
+                                @if (empty($candidate) || empty($candidate->profile_summary))
+                                    <a class="add_profile_details text-decoration-none" type="button"
+                                        data-bs-toggle="modal" data-bs-target="#profile_summry">
+                                        Add Profile summary
+                                    </a>
+                                @endif
                             </div>
 
                             <p style="font-size: 14px;">
@@ -428,8 +442,21 @@
                                     <a class="text-decoration-none text-dark" data-bs-toggle="modal"
                                         data-bs-target="#edit_personal_details"><i class="ri-pencil-line"></i></a>
                                 </span>
-                                <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#personal_details">Add Personal details</a>
+                                {{-- <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#personal_details">Add Personal details</a> --}}
+
+                                @if (empty($candidate) ||
+                                        (empty($candidate->marital_status) &&
+                                            empty($candidate->pincode) &&
+                                            empty($candidate->career_break) &&
+                                            empty($candidate->language) &&
+                                            empty($candidate->date_of_birth) &&
+                                            empty($candidate->hometown)))
+                                    <a class="add_profile_details text-decoration-none" type="button"
+                                        data-bs-toggle="modal" data-bs-target="#personal_details">
+                                        Add Personal details
+                                    </a>
+                                @endif
                             </div>
 
                             <div class="row">
@@ -612,7 +639,6 @@
                 $('input[name="company_name"]').val(button.data('company_name'));
                 $('input[name="job_title"]').val(button.data('job_title'));
                 $('input[name="current_salary"]').val(button.data('current_salary'));
-                $('select[name="notice_period"]').val(button.data('notice_period'));
             });
 
 

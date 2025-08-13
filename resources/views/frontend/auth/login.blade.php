@@ -249,7 +249,8 @@
                                                 <div class="position-relative">
                                                     <input type="password" name="password" placeholder="Password"
                                                         class="form-control" required id="first_password">
-                                                    <i class="ri-eye-line eye_elements toggle-password" data-target="first_password" id="password"></i>
+                                                    <i class="ri-eye-line eye_elements toggle-password"
+                                                        data-target="first_password" id="password"></i>
                                                 </div>
                                                 <p class="text-danger" id="password" id="password_limit"
                                                     style="font-size: 14px; display: none;"></p>
@@ -298,7 +299,6 @@
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-
                                             <div class="d-flex gap-5">
                                                 <div class="form-check">
                                                     <input class="form-check-input" value="1" type="radio"
@@ -307,7 +307,6 @@
                                                         I'm experienced
                                                     </label>
                                                 </div>
-
                                                 <div class="form-check">
                                                     <input class="form-check-input" value="0" type="radio"
                                                         name="experienced" id="fresher" required>

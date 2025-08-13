@@ -49,8 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete-employment/{id}', [HomeController::class, 'deleteEmploymentDetails'])->name('employment.delete');
 
 
-
-
     Route::post('/update-it-skills', [HomeController::class, 'updateitSkills'])->name('frontend.add-itskill');
     Route::post('/add-profile-summary', [HomeController::class, 'updateprofileSummary'])->name('frontend.add-profile-summary');
     Route::post('/update-profile-summary-details', [HomeController::class, 'updateuserprofileDetails'])->name('frontend.update-user-profile-details');

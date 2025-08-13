@@ -7,18 +7,41 @@
                 <div class="col-lg-3 home_profile">
                     <div class="card sticky-top" style="top: 70px;">
                         <div class="card-body">
-                            <div class="profile_image d-flex justify-content-center">
+                            {{-- <div class="profile_image d-flex justify-content-center">
                                 @if (Auth::user()->profile != '')
                                     <img src="{{ url('assets/upload/users') . '/' . Auth::user()->profile }}"
                                         class="candidate_img" alt="user img">
                                 @else
                                     <img src="{{ url('assets/default_user.webp') }}" class="candidate_img" alt="user img">
                                 @endif
+                            </div> --}}
+
+                            <div class="profile_image d-flex justify-content-center">
+                                <img src="{{ optional($candidate)->profile_image
+                                    ? asset('storage/' . optional($candidate)->profile_image)
+                                    : asset('assets/default_user.webp') }}"
+                                    class="candidate_img" alt="user img">
                             </div>
+
                             <h3 class="text-center candidateName pt-3 pb-1 mb-0">{{ Auth::user()->name ?? '' }}</h3>
-                            <p class="text-center designations m-0 p-0">Front End Developer</p>
-                            <p class="text-uppercase text-center pt-2 company mb-1">ddt software & ecommerce pvt ltd</p>
-                            <p class="online_day text-center">Last update 10d ago</p>
+                            @if ($employmenthome)
+                                <p class="text-center designations m-0 p-0">
+                                    {{ $employmenthome->job_title }}
+                                </p>
+                            @else
+                                <p class="text-center designations m-0 p-0">No employment record</p>
+                            @endif
+
+
+                            @if ($employmenthome)
+                                <p class="text-uppercase text-center pt-2 company mb-1">
+                                    {{ $employmenthome->company_name }}
+                                </p>
+                            @else
+                                <p class="text-uppercase text-center pt-2 company mb-1"> No company record</p>
+                            @endif
+                            <p class="online_day text-center text-black">Last update : {{ $lastUpdatedHuman }}
+                            </p>
                             <div class="d-flex justify-content-center ">
                                 <div class="d-flex justify-content-center">
                                     @if (Auth::user()->getCondidateDetail && Auth::user()->getCondidateDetail->field === 'aviation')
@@ -28,7 +51,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="profile_proformance">
+                            {{-- <div class="profile_proformance">
                                 <h3 class="text-center candidateName pt-3 pb-1 mb-0">{{ Auth::user()->name ?? '' }}</h3>
                                 <div class="card p-3">
                                     <div class="row">
@@ -43,7 +66,6 @@
                                                 </a>
                                             </div>
                                         </div>
-
                                         <div class="col-6">
                                             <div class="actions_">
                                                 <h5 class="recruterActions">
@@ -57,8 +79,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -129,8 +150,8 @@
                                                                 <span class="company_reviews"><i class="ri-star-fill"></i>
                                                                     4.5</span>
                                                             </div>
-                                                            <p class="job_address m-0 mt-2"><i
-                                                                    class="ri-map-pin-line"></i> Delhi..</p>
+                                                            <p class="job_address m-0 mt-2"><i class="ri-map-pin-line"></i>
+                                                                Delhi..</p>
 
                                                         </a>
                                                     </div>
