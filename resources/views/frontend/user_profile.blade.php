@@ -284,11 +284,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Experience</th>
-                                            <th scope="col">Expe. in Months</th>
                                             <th scope="col">Company Name</th>
                                             <th scope="col">Job Title</th>
-                                            <th scope="col">Current Salary</th>
-                                            <th scope="col">Notice Period</th>
                                             <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
@@ -296,27 +293,15 @@
                                         @foreach ($employments as $employment)
                                             <tr>
                                                 <td>{{ $employment->experience }}</td>
-                                                <td>{{ $employment->experience_month }}</td>
                                                 <td>{{ $employment->company_name }}</td>
                                                 <td>{{ $employment->job_title }}</td>
-                                                <td>{{ $employment->current_salary }}</td>
-                                                {{-- <td>{{ $employment->notice_period }}</td> --}}
-                                                {{-- <td>
-                                                    @if ($employment->is_current_employment == '0')
-                                                        {{ 'No' }}
-                                                    @elseif ($employment->is_current_employment == '1')
-                                                        {{ 'Yes' }}
-                                                    @endif
-                                                </td> --}}
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <button class="edit-btn-employment border-0 bg-transparent"
-                                                            data-id="{{ $employment->id }}"
-                                                            data-experience="{{ $employment->experience }}"
-                                                            data-experience_month="{{ $employment->experience_month }}"
+                                                            data-id="{{ $employment->id }}" {{-- data-experience="{{ $employment->experience }}" --}}
+                                                            data-experience="{{ $employment->joining_date ? $employment->joining_date->format('Y-m') : '' }}"
                                                             data-company_name="{{ $employment->company_name }}"
                                                             data-job_title="{{ $employment->job_title }}"
-                                                            data-current_salary="{{ $employment->current_salary }}"
                                                             data-bs-toggle="modal" data-bs-target="#edit_employment">
                                                             <i class="ri-pencil-line"></i>
                                                         </button>
@@ -634,11 +619,10 @@
                 const button = $(this);
 
                 $('#employment_id').val(button.data('id'));
-                $('select[name="experience"]').val(button.data('experience'));
-                $('select[name="experience_month"]').val(button.data('experience_month'));
+                $('input[name="experience"]').val(button.data('experience'));
                 $('input[name="company_name"]').val(button.data('company_name'));
                 $('input[name="job_title"]').val(button.data('job_title'));
-                $('input[name="current_salary"]').val(button.data('current_salary'));
+                // $('select[name="notice_period"]').val(button.data('notice_period'));
             });
 
 
