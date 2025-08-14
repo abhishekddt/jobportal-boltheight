@@ -17,26 +17,33 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::controller(AdminController::class)->group(function () {
+ Route::controller(AdminController::class)->group(function () {
             Route::get('dashboard', 'adminDashboard')->name('backend.dashboard');
             Route::get('all-admins', 'adminList')->name('backend.admin.all_admins');
-            Route::get('edit-admin', 'editAdmin')->name('backend.admin.edit_admin');
             Route::get('create-admin', 'createAdmin')->name('backend.admin.create_admin');
+            Route::post('store-admin', 'storeAdmin')->name('backend.admin.store_admin');
+            Route::post('all-admins/toggle-status/{encryptedId}', 'toggleAdminStatus')->name('backend.admin.statusUpdate');
+            Route::get('edit-admin/{encryptedId}', 'editAdmin')->name('backend.admin.edit_admin');
+            Route::put('admin/update/{encryptedId}', 'updateAdmin')->name('backedn.admin.update_admin');
         });
 
         Route::controller(EmployersController::class)->group(function () {
             Route::get('employers', 'index')->name('backend.employers.index');
+            Route::post('/employer/toggle-status/{id}', 'toggleEmployerStatus')
+                ->name('employer.toggle-status');
             Route::get('employer/create', 'create')->name('backend.employer.create');
-            Route::get('employer/edit', 'edit')->name('backend.employer.edit');
+            Route::post('employer/store', 'storeEmployer')->name('backend.employer.store');
+            Route::get('employer/edit/{encryptedId}', 'edit')->name('backend.employer.edit');
+            Route::put('employer/update/{encryptedId}', 'update')->name('backend.employer.update');
         });
 
         Route::controller(CondidateController::class)->group(function () {
-            Route::get('condidate-list', 'condidateList')->name('backend.condidate_list');
-            Route::get('condidate-edit/{id}', 'condidateEdit')->name('backend.condidate_edit');
-            Route::get('condidate-create', 'condidateCreate')->name('backend.condidate_create');
-            Route::POST('condidate-store', 'condidateStore')->name('backend.condidate_store');
-            Route::POST('condidate-update/{id}', 'condidateUpdate')->name('backend.condidate_update');
-            Route::delete('condidate-softdelete/{id}', 'softDelete')->name('backend.condidate_softDelete');
+            Route::get('candidate-list', 'condidateList')->name('backend.condidate_list');
+            Route::get('candidate-edit/{id}', 'condidateEdit')->name('backend.condidate_edit');
+            Route::get('candidate-create', 'condidateCreate')->name('backend.condidate_create');
+            Route::POST('candidate-store', 'condidateStore')->name('backend.condidate_store');
+            Route::POST('candidate-update/{id}', 'condidateUpdate')->name('backend.condidate_update');
+            Route::delete('candidate-softdelete/{id}', 'softDelete')->name('backend.condidate_softDelete');
         });
 
         Route::controller(DegreeController::class)->group(function () {
@@ -47,7 +54,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::controller(JobController::class)->group(function () {
             Route::get('jobs', 'index')->name('backend.jobs.index');
             Route::get('jobs/create', 'create')->name('backend.jobs.create');
-            Route::get('jobs/edit', 'edit')->name('backend.jobs.edit');
+            Route::post('jobs/store', 'store')->name('backend.jobs.store');
+            Route::post('jobs/status/update', 'updateStatus')->name('backend.jobs.updateStatus');
+            Route::get('jobs/edit/{encryptedId}', 'edit')->name('backend.jobs.edit');
+            Route::put('jobs/update/{encryptedId}', 'update')->name('backend.jobs.update');
         });
 
         Route::controller(CountryController::class)->group(function () {
@@ -56,6 +66,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::controller(GeneralController::class)->group(function () {
             Route::get('general', 'index')->name('backend.general.index');
+            Route::post('general/storeIndustry', 'storeIndustries')->name('backend.general.industryStore');
+            Route::put('industries/{encryptedId}', 'updateIndustries')->name('backend.general.industryUpdate');
+            Route::delete('/industries/{encryptedId}', 'destroyIndustry')->name('backend.general.industryDestroy');
+
+            //Funcational Area
+            Route::post('general', 'storeFunctionalArea')->name('backend.general.functionalareaStore');
+            Route::put('/functionalarea/{encryptedId}', 'updateFunctionalArea')->name('backend.general.functionalareaUpdate');
+            Route::delete('/functionalarea/{encryptedId}', 'destroyFunctionalArea')->name('backend.general.functionalAreaDestroy');
         });
     });
 });

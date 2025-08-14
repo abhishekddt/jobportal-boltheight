@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\CountryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
 });
+
+Route::get('/get-states/{country_id}', [ApiController::class, 'getStates']);
+Route::get('/get-cities/{state_id}', [ApiController::class, 'getCities']);
+Route::get('/get-currency/{country_id}', [ApiController::class, 'getCurrency']);
+Route::get('/get-functional-areas/{industry_id}', [ApiController::class, 'getfuncationalareaByIndustry']);
+
 
 Route::POST('/get-countries', [ApiController::class, 'getCountries'])->name('api.get_countries');
 Route::POST('/get-states', [ApiController::class, 'getStates'])->name('api.get_states');

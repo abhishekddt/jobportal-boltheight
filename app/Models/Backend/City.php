@@ -20,4 +20,8 @@ class City extends Model
         "flag",
         "wikiDataId"
     ];
+
+    public function jobs(){
+        return $this->belongsToMany(Job::class);
+    }
 }

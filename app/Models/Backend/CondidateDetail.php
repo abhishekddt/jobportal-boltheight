@@ -70,11 +70,4 @@ class CondidateDetail extends Model
         return $this->hasOne(CandidateJobPosition::class, 'candidate_user_id', 'id');
     }
 
-
-    // public function jobPositions()
-    // {
-    //     return $this->hasMany(CandidateJobPosition::class, 'candidate_user_id', 'id');
-    // }
-
-
 }

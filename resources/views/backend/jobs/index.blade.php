@@ -31,45 +31,12 @@
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-degree-tab" data-bs-toggle="pill"
+                            <button class="nav-link tabBTNs active" id="pills-degree-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-degree" type="button" role="tab" aria-controls="pills-degree"
-                                aria-selected="false">
+                                aria-selected="true">
                                 Pending Jobs
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-reported-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-reported" type="button" role="tab"
-                                aria-controls="pills-reported" aria-selected="false">
-                                Job Categories
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-resumes-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-resumes" type="button" role="tab" aria-controls="pills-resumes"
-                                aria-selected="false">
-                                Job Types
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-selected-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-selected" type="button" role="tab"
-                                aria-controls="pills-selected" aria-selected="false">
-                                Job Tags
-                            </button>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-Job_shift" data-bs-toggle="pill"
-                                data-bs-target="#pills-shift" type="button" role="tab" aria-controls="pills-shift"
-                                aria-selected="false">
-                                Job Shifts
-                            </button>
-                        </li>
-
-
-
-
                     </ul>
                 </div>
 
@@ -106,7 +73,7 @@
                                             <tr>
                                                 <th scope="col" style="width: 50px;">S.N</th>
                                                 <th scope="col">Job Title </th>
-                                                <th scope="col" class="text-center">Is Featured </th>
+                                                <th scope="col" class="text-center">Location </th>
                                                 <th scope="col" class="text-center">Is Suspended </th>
                                                 <th scope="col" class="text-center">Created On </th>
                                                 <th scope="col" class="text-center">Job Expiry Date</th>
@@ -116,66 +83,55 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <a href="#">Aliqua Neque praese</a>
-                                                </td>
-                                                <td class="text-center d-flex justify-content-center">
+                                            @foreach ($jobs as $job)
+                                                <tr>
+                                                    <td scope="row">{{ $loop->iteration }}</td>
+                                                    <td class="">
+                                                        <a href="#">{{ $job->job_title }}</a>
+                                                    </td>
+                                                    <td class="text-center ">
+                                                        {{ $job->state->name }}
+                                                    </td>
+                                                    <td class="">
+                                                        <div class="form-check form-switch d-flex justify-content-center">
+                                                            <input class="form-check-input job-status-toggle"
+                                                                type="checkbox" role="switch"
+                                                                data-id="{{ encrypt($job->id) }}"
+                                                                {{ $job->status ? 'checked' : '' }} checked
+                                                                style="width: 2.5em;">
+                                                        </div>
+                                                    </td>
 
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-success btn-sm dropdown-toggle"
-                                                            type="button" id="dropdownMenuButton"
-                                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Featured
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <li><a class="dropdown-item" href="#">Removed
-                                                                    Featured</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- <span class="badge rounded-pill font-weight-medium bg-light-info text-info ">Immediate Available</span> -->
-
-                                                </td>
-                                                <td class="">
-                                                    <div class="form-check form-switch d-flex justify-content-center">
-                                                        <input class="form-check-input" type="checkbox" role="switch"
-                                                            id="flexSwitchCheckChecked" checked style="width: 2.5em;">
-                                                    </div>
-                                                </td>
-
-                                                <td class="d-flex justify-content-center">
-                                                    <span
-                                                        class="badge rounded-pill font-weight-medium bg-light-secondary text-secondary">9th
-                                                        Jun, 2025</span>
-                                                </td>
-
-                                                <td>
-                                                    <div class=" d-flex justify-content-center">
+                                                    <td class="text-center">
                                                         <span
-                                                            class="badge rounded-pill font-weight-medium bg-light-info text-info ">20th
-                                                            Jun, 2025</span>
-                                                    </div>
-                                                </td>
-                                                <td class="d-flex justify-content-center">
-                                                    <span
-                                                        class=" badge font-weight-medium bg-light-warning text-warning">Super
-                                                        Admin</span>
-                                                </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-end">
-                                                        <a href="jobs_Edit.html" class="btn btn-sm  editButtons">
-                                                            <i class="ri-edit-box-line"></i>
-                                                        </a>
-                                                        <button
-                                                            class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                            class="badge rounded-pill font-weight-medium bg-light-secondary text-secondary">{{ $job->created_at->format('d M, Y') }}
+                                                        </span>
+                                                    </td>
 
-
+                                                    <td>
+                                                        <div class=" d-flex justify-content-center">
+                                                            <span
+                                                                class="badge rounded-pill font-weight-medium bg-light-info text-info ">{{ $job->job_expiry->format('d M, Y') }}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span
+                                                            class=" badge font-weight-medium bg-light-warning text-warning">{{ $job->getCreatedBy->name }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="button--group d-flex justify-content-end">
+                                                            <a href="{{ route('backend.jobs.edit', encrypt($job->id)) }}"
+                                                                class="btn btn-sm  editButtons">
+                                                                <i class="ri-edit-box-line"></i>
+                                                            </a>
+                                                            <button
+                                                                class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
+                                                                <i class="ri-delete-bin-line"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -185,6 +141,7 @@
                     <!--- data end-->
 
                 </div>
+
                 <div class="tab-pane fade" id="pills-degree" role="tabpanel" aria-labelledby="pills-degree-tab">
 
                     <!--- data -->
@@ -246,493 +203,14 @@
                     <!--- data end-->
 
                 </div>
-
-                <div class="tab-pane fade" id="pills-reported" role="tabpanel" aria-labelledby="pills-reported-tab">
-                    <!--- data -->
-                    <div class="row mb-4">
-                        <div class="col-12 d-flex justify-content-end gap-3 flex-wrap">
-                            <button class="btn btn-sm d-flex align-items-center justify-content-center m-0 w-100 addButton"
-                                style="padding: 8px; max-width: 210px;" data-bs-toggle="modal"
-                                data-bs-target="#JobCategories_add">
-                                <i class="ri-add-line me-1"></i>
-                                <span> Add</span>
-                            </button>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="card-body p-0 table-responsive ">
-
-                                    <table class="table tableStyle mb-0 dataTable" id="zero_config_reported">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Job Category</th>
-
-                                                <th scope="col" class="text-center">Is Featured</th>
-                                                <th scope="col" class="text-center">Created On</th>
-                                                <th scope="col" style="text-align: right;">Actions</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <p>Software Development & Engineering</p>
-                                                </td>
-
-                                                <td class="">
-                                                    <div class="form-check form-switch d-flex justify-content-center">
-                                                        <input class="form-check-input" type="checkbox" role="switch"
-                                                            id="flexSwitchCheckChecked" checked=""
-                                                            style="width: 2.5em;">
-                                                    </div>
-                                                </td>
-                                                <td class="d-flex justify-content-center">
-                                                    <span
-                                                        class="badge rounded-pill font-weight-medium bg-light-secondary text-secondary">9th
-                                                        Jun, 2025</span>
-                                                </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-end">
-                                                        <button class="btn btn-sm  editButtons" data-bs-toggle="modal"
-                                                            data-bs-target="#JobCategories_edit">
-                                                            <i class="ri-edit-box-line"></i>
-                                                        </button>
-                                                        <button
-                                                            class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- data end-->
-                </div>
-                <div class="tab-pane fade" id="pills-resumes" role="tabpanel" aria-labelledby="pills-resumes-tab">
-                    <!---alll resume start  ----->
-
-                    <div class="row mb-4">
-                        <div class="col-12 d-flex justify-content-end gap-3 flex-wrap">
-                            <button class="btn btn-sm d-flex align-items-center justify-content-center m-0 w-100 addButton"
-                                style="padding: 8px; max-width: 210px;" data-bs-toggle="modal"
-                                data-bs-target="#Jobtype_add">
-                                <i class="ri-add-line me-1"></i>
-                                <span> Add</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="card-body p-0 table-responsive">
-
-                                    <table class="table tableStyle mb-0 dataTable" id="zero_config_reported">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Job Type </th>
-                                                <th scope="col" class="text-center">Created Date</th>
-                                                <th scope="col" style="text-align: right;">Actions</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <p>Software Development & Engineering</p>
-                                                </td>
-                                                <td class="d-flex justify-content-center">
-                                                    <span
-                                                        class="badge rounded-pill font-weight-medium bg-light-secondary text-secondary">9th
-                                                        Jun, 2025</span>
-                                                </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-end">
-                                                        <button class="btn btn-sm  editButtons" data-bs-toggle="modal"
-                                                            data-bs-target="#Jobtype_edit">
-                                                            <i class="ri-edit-box-line"></i>
-                                                        </button>
-                                                        <button
-                                                            class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!---alll resume end  ----->
-                </div>
-                <div class="tab-pane fade" id="pills-selected" role="tabpanel" aria-labelledby="pills-selected-tab">
-
-                    <div class="row mb-4">
-                        <div class="col-12 d-flex justify-content-end gap-3 flex-wrap">
-                            <button class="btn btn-sm d-flex align-items-center justify-content-center m-0 w-100 addButton"
-                                style="padding: 8px; max-width: 210px;" data-bs-toggle="modal"
-                                data-bs-target="#JobTag_add">
-                                <i class="ri-add-line me-1"></i>
-                                <span> Add</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="card-body p-0 table-responsive">
-
-                                    <table class="table tableStyle mb-0 dataTable" id="zero_config_reported">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Job Tag </th>
-                                                <th scope="col" style="width: 200px;" class="">Description</th>
-                                                <th scope="col" style="text-align: right;">Actions</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <p>React.js</p>
-                                                </td>
-                                                <td class=" ">
-                                                    Automated testing is the application of software tools to automate a
-                                                    human-driven manual process of reviewing and validating a software
-                                                    product. Most mode...
-                                                </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-end">
-                                                        <button class="btn btn-sm  editButtons" data-bs-toggle="modal"
-                                                            data-bs-target="#JobTag_edit">
-                                                            <i class="ri-edit-box-line"></i>
-                                                        </button>
-                                                        <button
-                                                            class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="tab-pane fade" id="pills-shift" role="tabpanel" aria-labelledby="pills-Job_shift">
-
-                    <div class="row mb-4">
-                        <div class="col-12 d-flex justify-content-end gap-3 flex-wrap">
-                            <button class="btn btn-sm d-flex align-items-center justify-content-center m-0 w-100 addButton"
-                                style="padding: 8px; max-width: 210px;" data-bs-toggle="modal"
-                                data-bs-target="#JobShift_add">
-                                <i class="ri-add-line me-1"></i>
-                                <span> Add</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="card-body p-0 table-responsive">
-
-                                    <table class="table tableStyle mb-0 dataTable" id="zero_config_reported">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Shift </th>
-                                                <th scope="col" class="">Created Date </th>
-                                                <th scope="col" style="text-align: right;">Actions</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <p>Night Shift</p>
-                                                </td>
-                                                <td class="">
-                                                    <span
-                                                        class="badge rounded-pill font-weight-medium bg-light-secondary text-secondary">9th
-                                                        Jun, 2025</span>
-                                                </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-end">
-                                                        <button class="btn btn-sm  editButtons" data-bs-toggle="modal"
-                                                            data-bs-target="#JobShift_edit">
-                                                            <i class="ri-edit-box-line"></i>
-                                                        </button>
-                                                        <button
-                                                            class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!--------------------modal start------------------->
-    <!--  degree_add  -->
-    <div class="modal fade" id="JobCategories_add" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Job Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
             </div>
         </div>
-    </div>
-
-    <!--  degree_edit  -->
-    <div class="modal fade" id="JobCategories_edit" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Job Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!---- job type -->
-
-    <div class="modal fade" id="Jobtype_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Job Type</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  job type edit  -->
-    <div class="modal fade" id="Jobtype_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Job Type</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!---- job tags -->
-
-    <div class="modal fade" id="JobTag_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Job Tag</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  job tags edit  -->
-    <div class="modal fade" id="JobTag_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Job Tag</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!---- job shift -->
-
-    <div class="modal fade" id="JobShift_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Job Shift</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  job tags edit  -->
-    <div class="modal fade" id="JobShift_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Job Shift</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 ">
-                        <div class="form-group">
-                            <label class="text-dark">Name <span class="text-danger"> *</span></label>
-                            <input type="text" placeholder="Name" class="form-control typeText" required>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--------------------modal end-->
-
-
-    </div>
-
-
     </div>
 
 @section('javascript-section')
     <script>
         $(document).ready(function() {
-            $('#zero_config_condidates, #zero_config_digree_levels, #zero_config_reported, #selected_condidate')
+            $('#zero_config_condidates, #zero_config_digree_levels')
                 .DataTable({
                     responsive: true,
                     language: {
@@ -741,6 +219,85 @@
                         lengthMenu: ' _MENU_'
                     }
                 });
+        });
+    </script>
+
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success ') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: '{{ session('error ') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error!',
+                html: '{!! implode('<br>', $errors->all()) !!}',
+                confirmButtonText: 'OK'
+            });
+        @endif
+
+        document.querySelectorAll('.job-status-toggle').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function(event) {
+                let encryptedId = this.getAttribute('data-id');
+                let newStatus = this.checked ? 1 : 0;
+                let checkboxElement = this;
+
+                checkboxElement.checked = !checkboxElement.checked;
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: newStatus ? "Activate this job?" : "Deactivate this job?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, update it'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/admin/jobs/status/update`, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': document.querySelector(
+                                        'meta[name="csrf-token"]').getAttribute('content'),
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: encryptedId,
+                                    status: newStatus
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    checkboxElement.checked = !!newStatus;
+                                    Swal.fire('Updated!', 'Job status has been updated.',
+                                        'success');
+                                } else {
+                                    Swal.fire('Error!', 'Could not update job status.',
+                                    'error');
+                                }
+                            })
+                            .catch(() => {
+                                Swal.fire('Error!', 'Something went wrong.', 'error');
+                            });
+                    }
+                });
+            });
         });
     </script>
 @endsection

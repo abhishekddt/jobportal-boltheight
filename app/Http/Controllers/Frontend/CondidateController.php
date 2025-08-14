@@ -12,7 +12,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
-
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
@@ -113,9 +112,9 @@ class CondidateController extends Controller
                 "last_name" => $request->last_name,
                 "email" => $request->email,
                 "phone" => $request->phone,
-                "country" => $request->country,
-                "state" => $request->state,
-                "city" => $request->city,
+                "country_id" => $request->country,
+                "state_id" => $request->state,
+                "city_id" => $request->city,
                 "password" => Hash::make($request->password),
                 "gender" => $request->gender,
                 "user_role_id" => 4
@@ -200,9 +199,9 @@ class CondidateController extends Controller
                 "email" => $request->email,
                 "phone" => $request->phone,
                 "password" => Hash::make($request->password),
-                "country" => $request->country,
-                "state" => $request->state,
-                "city" => $request->city,
+                "country_id" => $request->country,
+                "state_id" => $request->state,
+                "city_id" => $request->city,
                 "gender" => $request->gender,
                 "user_role_id" => 4,
                 "created_by" => Auth::user()->id

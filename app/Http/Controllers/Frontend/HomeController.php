@@ -311,7 +311,6 @@ class HomeController extends Controller
 
 
     // All Controller related to Employment
-
     public function addEmploymentDetails(Request $request)
     {
         try {
@@ -366,7 +365,7 @@ class HomeController extends Controller
         $joiningDate = \Carbon\Carbon::createFromFormat('Y-m', $request->experience)->startOfMonth();
         $currentDate = now()->startOfMonth();
         $diff = $joiningDate->diff($currentDate);
-        $experienceFormatted = "{$diff->y} years {$diff->m} months";
+        $experienceFormatted = "{$diff->y} Years {$diff->m} Months";
 
         $employment = EmploymentDetail::where('id', $id)
             ->where('user_id', $user->id)

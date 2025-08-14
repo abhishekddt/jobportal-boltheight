@@ -25,34 +25,7 @@
                                 Candidates
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-degree-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-degree" type="button" role="tab" aria-controls="pills-degree"
-                                aria-selected="false">
-                                Degree Levels
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-reported-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-reported" type="button" role="tab"
-                                aria-controls="pills-reported" aria-selected="false">
-                                Reported Candidates
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-resumes-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-resumes" type="button" role="tab" aria-controls="pills-resumes"
-                                aria-selected="false">
-                                All Resumes
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link tabBTNs" id="pills-selected-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-selected" type="button" role="tab"
-                                aria-controls="pills-selected" aria-selected="false">
-                                Selected Candidates
-                            </button>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -77,7 +50,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        {{-- <div class="col-12">
+                        <div class="col-12">
                             @php
                                 $sn = 1;
                             @endphp
@@ -147,243 +120,6 @@
                             @else
                                 <center>No Data Available</center>
                             @endif
-                        </div> --}}
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-degree" role="tabpanel" aria-labelledby="pills-degree-tab">
-                    <div class="row mb-4">
-                        <div class="col-12 d-flex justify-content-end gap-3 flex-wrap">
-                            <button class="btn btn-sm d-flex align-items-center justify-content-center m-0 w-100 addButton"
-                                style="padding: 8px; max-width: 210px;" data-bs-toggle="modal"
-                                data-bs-target="#degree_add">
-                                <i class="ri-add-line me-1"></i>
-                                <span> Add</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="card-body p-0 table-responsive ">
-
-                                    <table class="table tableStyle mb-0 dataTable" id="zero_config_digree_levels">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Degree Name</th>
-                                                <th scope="col">Degree Status</th>
-                                                <th scope="col" class="text-center">Create Date</th>
-                                                <th scope="col" style="text-align: right;">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {{-- @foreach ($degrees as $degree)
-                                                <tr>
-                                                    <td scope="row">{{ $degree->id }}</td>
-                                                    <td class="">
-                                                        <p class="nameTexts m-0">{{ $degree->name }}</p>
-                                                        <p class="m-0 emailsEmp">{{ $degree->description }}</p>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <div
-                                                                class="form-check form-switch d-flex justify-content-center">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    role="switch"
-                                                                    id="flexSwitchCheckChecked-{{ $degree->id }}"
-                                                                    {{ $degree->status ? 'checked' : '' }}
-                                                                    onchange="toggleStatus({{ $degree->id }}, this.checked)"
-                                                                    style="width: 2.5em;">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <span
-                                                                class="badge rounded-pill font-weight-medium bg-light-secondary text-secondary">
-                                                                {{ \Carbon\Carbon::parse($degree->created_at)->format('d M, Y') }}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="button--group d-flex justify-content-end">
-                                                            <button class="btn btn-sm  editButtons" data-bs-toggle="modal"
-                                                                data-bs-target="#degree_edit">
-                                                                <i class="ri-edit-box-line"></i>
-                                                            </button>
-                                                            <button
-                                                                class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
-                                                                <i class="ri-delete-bin-line"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach --}}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-reported" role="tabpanel" aria-labelledby="pills-reported-tab">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="card-body p-0 table-responsive">
-                                    <table class="table tableStyle mb-0 dataTable" id="zero_config_reported">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Candidate Name</th>
-                                                <th scope="col" class="text-center">Reported By</th>
-                                                <th scope="col" class="text-center">Reported On</th>
-                                                <th scope="col" style="text-align: right;">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <p class="nameTexts m-0">Deepak</p>
-                                                    <p class="m-0 emailsEmp">Deepat@gmail.com</p>
-                                                </td>
-                                                <td class="text-center">
-                                                    Pega systems
-                                                </td>
-                                                <td class="d-flex justify-content-center">
-                                                    <span
-                                                        class="badge rounded-pill font-weight-medium bg-light-secondary text-secondary">
-                                                        9th May, 2025</span>
-                                                </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-end">
-
-                                                        <button
-                                                            class="btn btn-sm btn-outline--danger border-danger confirmationBtn delete_condidates">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-resumes" role="tabpanel" aria-labelledby="pills-resumes-tab">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="col-12">
-                                    <form>
-                                        <div class="row p-3">
-                                            <div class="form-input col-md-3 col-12 mb-2">
-                                                <input type="number" class="form-control yearExp" maxlength="2"
-                                                    placeholder="Experience">
-                                            </div>
-                                            <div class="form-input col-md-3 col-12 mb-2">
-                                                <input type="text" class="form-control" placeholder="Designation">
-                                            </div>
-                                            <div class="form-input col-4 mb-2">
-                                                <button type="submit" class="btn btn-info">Search</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-body p-0 table-responsive">
-                                    <table class="table tableStyle mb-0 ">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Candidate Name</th>
-                                                <th scope="col" class="text-center">Designation</th>
-                                                <th scope="col" class="text-center">Experience</th>
-                                                <th scope="col" class="text-center">Available At</th>
-                                                <th scope="col" class="text-center">Title</th>
-                                                <th scope="col" style="text-align: center;">Download</th>
-                                                <th scope="col" style="text-align: center;">Send shortlist</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <p class="nameTexts m-0">Deepak</p>
-                                                    <p class="m-0 emailsEmp">Deepat@gmail.com</p>
-                                                </td>
-                                                <td class="text-center">React.Js</td>
-                                                <td class="text-center">2.5 Year</td>
-                                                <td class="d-flex justify-content-center">
-                                                    <span
-                                                        class="badge rounded-pill font-weight-medium bg-light-info text-info ">Immediate
-                                                        Available</span>
-                                                </td>
-                                                <td class="text-center"> Resume </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-center">
-                                                        <button class="btn btn-sm text-white  btn-primary">
-                                                            <i class="ri-download-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                                <td class="d-flex justify-content-center">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch"
-                                                            id="shortlist_candidate" style="width: 40px;">
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-selected" role="tabpanel" aria-labelledby="pills-selected-tab">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card borderRadius">
-                                <div class="card-body p-0 table-responsive">
-                                    <table class="table tableStyle mb-0 dataTable" id="selected_condidate">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width: 50px;">S.N</th>
-                                                <th scope="col">Candidate Name</th>
-                                                <th scope="col" class="text-center">Employer Name</th>
-                                                <th scope="col" class="text-center">Status</th>
-                                                <th scope="col" style="text-align: center;">Job Details</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td class="">
-                                                    <p class="nameTexts m-0">Deepak</p>
-                                                    <p class="m-0 emailsEmp">Deepat@gmail.com</p>
-                                                </td>
-                                                <td class="text-center">
-                                                    deepak
-                                                </td>
-                                                <td class="d-flex justify-content-center">
-                                                    <span
-                                                        class="badge rounded-pill font-weight-medium bg-light-info text-info ">Immediate
-                                                        Available</span>
-                                                </td>
-                                                <td>
-                                                    <div class="button--group d-flex justify-content-center">
-
-                                                        <button class="btn btn-sm text-white  btn-primary">
-                                                            <i class="ri-eye-line"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -533,15 +269,16 @@
     </script> --}}
 
     <script>
-        $(document).ready(function () {
-            $('#zero_config_condidates, #zero_config_digree_levels, #zero_config_reported, #selected_condidate').DataTable({
-                responsive: true,
-                language: {
-                    search: '',
-                    searchPlaceholder: 'Search',
-                    lengthMenu: ' _MENU_'
-                }
-            });
+        $(document).ready(function() {
+            $('#zero_config_condidates, #zero_config_digree_levels, #zero_config_reported, #selected_condidate')
+                .DataTable({
+                    responsive: true,
+                    language: {
+                        search: '',
+                        searchPlaceholder: 'Search',
+                        lengthMenu: ' _MENU_'
+                    }
+                });
         });
     </script>
 @endsection

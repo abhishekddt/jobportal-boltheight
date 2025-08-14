@@ -607,13 +607,17 @@
                             <div class="col-12">
                                 <form id="resumeUploadForm" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="upload-box">
-                                        <label for="resume-upload" class="upload-label">
-                                            <strong>Already have a resume?</strong>
-                                            <a class="text-primary text-decoration-none">Upload resume</a>
-                                        </label>
+                                    <div class="upload-box justify-content-center align-items-center">
+                                        @if (!optional($candidate)->candidate_resume)
+                                            <label for="resume-upload" class="upload-label">
+                                                <strong>Already have a resume?</strong>
+                                                <a class="text-primary text-decoration-none">Upload resume</a>
+                                            </label>
+                                        @endif
+
                                         <input type="file" id="resume-upload" name="candidate_resume"
                                             accept=".doc,.docx,.rtf,.pdf" />
+
                                         <div class="d-flex align-items-center gap-2 mt-2">
                                             <p id="file_name" class="mb-0">
                                                 @if (optional($candidate)->candidate_resume)
@@ -628,7 +632,11 @@
                                                 </a>
                                             @endif
                                         </div>
-                                        <p>Supported Formats: doc, docx, rtf, pdf, up to 2 MB</p>
+
+                                        {{-- Show only if no resume uploaded --}}
+                                        @if (!optional($candidate)->candidate_resume)
+                                            <p>Supported Formats: doc, docx, rtf, pdf, up to 2 MB</p>
+                                        @endif
                                     </div>
                                 </form>
                             </div>
