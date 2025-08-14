@@ -27,6 +27,10 @@ class EmploymentDetail extends Model
         'employment_type',
     ];
 
+    protected $casts = [
+        'joining_date' => 'date',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -24,4 +24,5 @@ class EmployerDetail extends Model
         "linkedin_url",
         "status"
     ];
+
 }

@@ -1480,9 +1480,21 @@
                                         class="text-danger">*</span></label>
                                 <select class="form-control selects1" name="dispatcher_approval_authority" required>
                                     <option disabled>Select Approval Authority</option>
-                                    <option value="indigo"
-                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->dispatcher_approval_authority == 'indigo' ? 'selected' : '' }}>
-                                        Indigo</option>
+                                    <option value="one"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->dispatcher_approval_authority == 'one' ? 'selected' : '' }}>
+                                        EASA (European Union Aviation Safety Agency)</option>
+
+                                    <option value="two"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->dispatcher_approval_authority == 'two' ? 'selected' : '' }}>
+                                        FAA (Federal Aviation Administration, USA)</option>
+
+                                    <option value="DGCA-(Directorate-General-of-Civil-Aviation,-India)"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->dispatcher_approval_authority == 'DGCA-(Directorate-General-of-Civil-Aviation,-India)' ? 'selected' : '' }}>
+                                        DGCA (Directorate General of Civil Aviation, India)</option>
+
+                                    <option value="Other-(Civil-Aviation-Authority)"
+                                        {{ isset($candidateDetail) && optional($candidateDetail->jobPosition)->dispatcher_approval_authority == 'Other-(Civil-Aviation-Authority)' ? 'selected' : '' }}>
+                                        Other (Civil Aviation Authority)</option>
                                 </select>
                             </div>
                         </div>
@@ -1591,7 +1603,7 @@
                                 <select name="country" name="country" class="form-control selects1">
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}"
-                                            {{ $user->country == $country->id ? 'selected' : '' }}>
+                                            {{ $user->country_id == $country->id ? 'selected' : '' }}>
                                             {{ $country->name }}
                                         </option>
                                     @endforeach
@@ -1603,9 +1615,9 @@
                             <div class="form-group">
                                 <label class="form-label mb-0">State <span class="text-danger">*</span></label>
                                 <select name="state" class="form-control selects1">
-                                    @foreach ($states->where('country_id', $user->country) as $state)
+                                    @foreach ($states->where('country_id', $user->country_id) as $state)
                                         <option value="{{ $state->id }}"
-                                            {{ $user->state == $state->id ? 'selected' : '' }}>
+                                            {{ $user->state_id == $state->id ? 'selected' : '' }}>
                                             {{ $state->name }}
                                         </option>
                                     @endforeach
@@ -1617,9 +1629,9 @@
                             <div class="form-group">
                                 <label class="form-label mb-0">City<span class="text-danger">*</span></label>
                                 <select name="city" class="form-control selects1">
-                                    @foreach ($cities->where('state_id', $user->state) as $city)
+                                    @foreach ($cities->where('state_id', $user->state_id) as $city)
                                         <option value="{{ $city->id }}"
-                                            {{ $user->city == $city->id ? 'selected' : '' }}>
+                                            {{ $user->city_id == $city->id ? 'selected' : '' }}>
                                             {{ $city->name }}
                                         </option>
                                     @endforeach
@@ -1952,7 +1964,33 @@
                 <form id="add-employment-form">
                     @csrf
                     <div class="row">
-                        <div class="col-md-12 mb-4">
+                        {{-- Company Name --}}
+                        <div class="col-md-6 mb-4">
+                            <div class="form-group">
+                                <label class="form-label mb-0">company name<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" placeholder="company name" name="company_name"
+                                    class="form-control typeText" required>
+                            </div>
+                        </div>
+                        {{-- Job Title --}}
+                        <div class="col-md-6 mb-4">
+                            <div class="form-group">
+                                <label class="form-label mb-0">job title<span class="text-danger">*</span></label>
+                                <input type="text" placeholder="Type your job designation" class="form-control"
+                                    name="job_title" maxlength="50" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-group">
+                                <label class="form-label mb-2">Joining Date <span
+                                        class="text-danger">*</span></label>
+                                <!-- Year -->
+                                <input type="month" class="form-control" name="experience" id="experience"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
                             <label class="form-label mb-2">Is this your current employment? <span
                                     class="text-danger">*</span></label>
                             <div class="form-group d-flex gap-3 flex-wrap">
@@ -1968,99 +2006,11 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- Employment Type --}}
-                        <div class="col-md-12 mb-4">
-                            <label class="form-label mb-2">Employment type <span
-                                    class="text-danger">*</span></label>
-                            <div class="form-group d-flex gap-3 flex-wrap">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="employment_type"
-                                        id="employmentTypeFullTime" value="full_time">
-                                    <label class="form-check-label" for="employmentTypeFullTime">Full Time</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="employment_type"
-                                        id="employmentTypeInternship" value="intern" checked>
-                                    <label class="form-check-label"
-                                        for="employmentTypeInternship">Internship</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Experience --}}
-                        <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Total experience <span
-                                        class="text-danger">*</span></label>
-                                <div class="d-flex gap-2 flex-sm-nowrap">
-                                    <select class="form-control selects1" name="experience">
-                                        <option disabled>Select Year</option>
-                                        <option value="0 Year">0 Year</option>
-                                        <option value="1 Year">1 Year</option>
-                                        <option value="2 Year">2 Year</option>
-                                        <option value="3 Year">3 Year</option>
-                                        <option value="4 Year">4 Year</option>
-                                        <option value="5 Year">5 Year</option>
-                                        <option value="6 Year">6 Year</option>
-                                        <option value="7 Year">7 Year</option>
-                                        <option value="8 Year">8 Year</option>
-                                        <option value="9 Year">9 Year</option>
-                                        <option value="10 Year">10 Year</option>
-                                    </select>
-
-                                    <select class="form-control selects1" name="experience_month">
-                                        <option disabled>Select Month</option>
-                                        <option value="0 Month">0 Month</option>
-                                        <option value="1 Month">1 Month</option>
-                                        <option value="2 Month">2 Month</option>
-                                        <option value="3 Month">3 Month</option>
-                                        <option value="4 Month">4 Month</option>
-                                        <option value="5 Month">5 Month</option>
-                                        <option value="6 Month">6 Month</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Company Name --}}
-                        <div class="col-md-12 mb-4">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Current company name<span
-                                        class="text-danger">*</span></label>
-                                <input type="text" placeholder="Current company name" name="company_name"
-                                    class="form-control typeText" required>
-                            </div>
-                        </div>
-                        {{-- Job Title --}}
-                        <div class="col-md-6 mb-4">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Current job title<span
-                                        class="text-danger">*</span></label>
-                                <input type="text" placeholder="Type your job designation" class="form-control"
-                                    name="job_title" maxlength="50" required>
-                            </div>
-                        </div>
-                        {{-- Joining Date --}}
-                        <div class="col-md-6 mb-4">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Joining date<span
-                                        class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="joining_date" required>
-                            </div>
-                        </div>
-                        {{-- Current Salary --}}
-                        <div class="col-md-6 mb-4">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Current salary<span
-                                        class="text-danger">*</span></label>
-                                <input type="number" placeholder="Current salary" name="current_salary"
-                                    class="form-control" required>
-                            </div>
-                        </div>
+                        {{-- Notice Period --}}
                         <div class="col-md-6 mb-4" id="noticePeriodWrapper" style="display: none;">
                             <div class="form-group">
-                                <label class="form-label mb-0">Notice period<span
-                                        class="text-danger">*</span></label>
-                                <select class="form-control selects1" name="notice_period" required>
+                                <label class="form-label mb-0">Expected<span class="text-danger">*</span></label>
+                                <select class="form-control selects1" name="notice_period">
                                     <option disabled>Select Notice Period</option>
                                     <option value="15 Days or Less">15 Days or Less</option>
                                     <option value="1 Month">1 Month</option>
@@ -2069,13 +2019,6 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- Job Profile --}}
-                        {{-- <div class="col-md-12 mb-4">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Job profile<span class="text-danger">*</span></label>
-                                <textarea class="form-control" name="job_profile" placeholder="Type here..." required></textarea>
-                            </div>
-                        </div> --}}
                     </div>
 
                     {{-- Modal Footer --}}
@@ -2110,40 +2053,6 @@
                     @csrf
                     <input type="hidden" name="id" id="employment_id">
                     <div class="row">
-                        {{-- Experience --}}
-                        <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Total experience <span
-                                        class="text-danger">*</span></label>
-                                <div class="d-flex gap-2 flex-sm-nowrap">
-                                    <select class="form-control selects1" name="experience">
-                                        <option disabled>Select Year</option>
-                                        <option value="0 Year">0 Year</option>
-                                        <option value="1 Year">1 Year</option>
-                                        <option value="2 Year">2 Year</option>
-                                        <option value="3 Year">3 Year</option>
-                                        <option value="4 Year">4 Year</option>
-                                        <option value="5 Year">5 Year</option>
-                                        <option value="6 Year">6 Year</option>
-                                        <option value="7 Year">7 Year</option>
-                                        <option value="8 Year">8 Year</option>
-                                        <option value="9 Year">9 Year</option>
-                                        <option value="10 Year">10 Year</option>
-                                    </select>
-
-                                    <select class="form-control selects1" name="experience_month">
-                                        <option disabled>Select Month</option>
-                                        <option value="0 Month">0 Month</option>
-                                        <option value="1 Month">1 Month</option>
-                                        <option value="2 Month">2 Month</option>
-                                        <option value="3 Month">3 Month</option>
-                                        <option value="4 Month">4 Month</option>
-                                        <option value="5 Month">5 Month</option>
-                                        <option value="6 Month">6 Month</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         {{-- Company Name --}}
                         <div class="col-md-12 mb-4">
                             <div class="form-group">
@@ -2162,26 +2071,14 @@
                                     name="job_title" maxlength="50" required>
                             </div>
                         </div>
-                        {{-- Current Salary --}}
+
                         <div class="col-md-6 mb-4">
                             <div class="form-group">
-                                <label class="form-label mb-0">Current salary<span
+                                <label class="form-label mb-2">Joining Date <span
                                         class="text-danger">*</span></label>
-                                <input type="number" placeholder="Current salary" name="current_salary"
-                                    class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12 mb-4" id="noticePeriodWrapper" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label mb-0">Notice period<span
-                                        class="text-danger">*</span></label>
-                                <select class="form-control selects1" name="notice_period" required>
-                                    <option disabled>Select Notice Period</option>
-                                    <option value="15 Days or Less">15 Days or Less</option>
-                                    <option value="1 Month">1 Month</option>
-                                    <option value="2 Month">2 Month</option>
-                                    <option value="3 Month">3 Month</option>
-                                </select>
+                                <!-- Year -->
+                                <input type="month" class="form-control" name="experience" id="experience"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -2871,13 +2768,6 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            {{-- <div class="form-group">
-                                <label class="form-label mb-0">Date of birth<span
-                                        class="text-danger">*</span></label>
-                                <input type="date" name="date_of_birth"
-                                    value="{{ $candidate->date_of_birth ? \Carbon\Carbon::parse($candidate->date_of_birth)->format('Y-m-d') : '' }}"
-                                    class="form-control" required>
-                            </div> --}}
                             <div class="form-group">
                                 <label class="form-label mb-0">Date of birth <span
                                         class="text-danger">*</span></label>
@@ -2903,25 +2793,6 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="col-md-6 mb-4">
-                            <div class="form-group select2form">
-                                <label class="text-dark">Language proficiency</label>
-                                @php
-                                    $candidateLanguages = is_array($candidate->language)
-                                        ? $candidate->language
-                                        : explode(',', $candidate->language);
-                                @endphp
-
-                                <select class="select2 form-control block" name="language[]" multiple="multiple"
-                                    style="width: 100%">
-                                    <option value="Hindi"
-                                        {{ in_array('Hindi', $candidateLanguages) ? 'selected' : '' }}>Hindi</option>
-                                    <option value="English"
-                                        {{ in_array('English', $candidateLanguages) ? 'selected' : '' }}>English
-                                    </option>
-                                </select>
-                            </div>
-                        </div> --}}
                         <div class="col-md-6 mb-4">
                             <div class="form-group select2form">
                                 <label class="text-dark">Language proficiency</label>
@@ -3251,7 +3122,7 @@
         });
 
         $('input[name="is_current_employment"]').on('change', function() {
-            if ($(this).val() == "0") {
+            if ($(this).val() == "1") {
                 $('#noticePeriodWrapper').show();
                 $('select[name="notice_period"]').attr('required', true);
             } else {

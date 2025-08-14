@@ -71,7 +71,7 @@ class HomeController extends Controller
             'it_security' => 'It Security',
             'chat_support' => 'Chat Support',
             'project_management' => 'Project Management',
-            'ithead' => 'It Head'
+            'ithead' => 'It Head',
         ];
 
         $skills = [];
@@ -161,7 +161,8 @@ class HomeController extends Controller
             'it_security' => 'It Security',
             'chat_support' => 'Chat Support',
             'project_management' => 'Project Management',
-            'ithead' => 'It Head'
+            'ithead' => 'It Head',
+            'abhishek kushwaha' => 'Abhishek Kushwaha'
         ];
 
         $skills = [];
@@ -317,28 +318,27 @@ class HomeController extends Controller
             $user = auth()->user();
 
             $request->validate([
-                'experience' => 'required',
-                'experience_month' => 'required',
                 'company_name' => 'required',
                 'job_title' => 'required',
-                'joining_date' => 'required',
-                'current_salary' => 'required',
+                'experience' => 'required|date_format:Y-m',
                 'is_current_employment' => 'required',
-                'employment_type' => 'required',
-                'notice_period' => 'required_if:is_current_employment,0|nullable',
+                'notice_period' => 'required_if:is_current_employment,1|nullable',
             ]);
+
+            $joiningDate = \Carbon\Carbon::createFromFormat('Y-m', $request->experience)->startOfMonth();
+            $currentDate = \Carbon\Carbon::now()->startOfMonth();
+
+            $diff = $joiningDate->diff($currentDate);
+            $experienceFormatted = "{$diff->y} Years {$diff->m} Months";
 
             $employment = new EmploymentDetail();
             $employment->user_id = $user->id;
-            $employment->experience = $request->experience;
-            $employment->experience_month = $request->experience_month;
             $employment->company_name = $request->company_name;
             $employment->job_title = $request->job_title;
-            $employment->joining_date = $request->joining_date;
-            $employment->current_salary = $request->current_salary;
-            $employment->notice_period = $request->notice_period;
+            $employment->joining_date = $joiningDate;
+            $employment->experience = $experienceFormatted;
             $employment->is_current_employment = $request->is_current_employment;
-            $employment->employment_type = $request->employment_type;
+            $employment->notice_period = $request->notice_period;
             $employment->save();
 
             return response()->json([
@@ -348,7 +348,7 @@ class HomeController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => false,
-                'message' => 'Error adding education details: ' . $e->getMessage(),
+                'message' => 'Error adding employment details: ' . $e->getMessage(),
             ], 500);
         }
     }
@@ -356,34 +356,34 @@ class HomeController extends Controller
     public function updateEmploymentDetails(Request $request, $id)
     {
         $request->validate([
-            'experience' => 'required',
-            'experience_month' => 'required',
-            'company_name' => 'required|string|max:255',
-            'job_title' => 'required|string|max:255',
-            'current_salary' => 'required|numeric',
-            'notice_period' => 'required_if:is_current_employment,0|nullable',
+            'company_name' => 'required',
+            'job_title' => 'required',
+            'experience' => 'required|date_format:Y-m',
         ]);
 
         $user = auth()->user();
+
+        $joiningDate = \Carbon\Carbon::createFromFormat('Y-m', $request->experience)->startOfMonth();
+        $currentDate = now()->startOfMonth();
+        $diff = $joiningDate->diff($currentDate);
+        $experienceFormatted = "{$diff->y} years {$diff->m} months";
 
         $employment = EmploymentDetail::where('id', $id)
             ->where('user_id', $user->id)
             ->firstOrFail();
 
         $employment->update([
-            'experience' => $request->experience,
-            'experience_month' => $request->experience_month,
             'company_name' => $request->company_name,
             'job_title' => $request->job_title,
-            'current_salary' => $request->current_salary,
-            'notice_period' => $request->notice_period
+            'joining_date' => $joiningDate,
+            'experience' => $experienceFormatted,
         ]);
-
         return response()->json([
             'status' => true,
             'message' => 'Employment details updated successfully',
         ]);
     }
+
 
 
 
@@ -779,63 +779,6 @@ class HomeController extends Controller
             ], 500);
         }
     }
-
-    // public function addPilotDetail(Request $request)
-    // {
-    //     try {
-    //         $user = auth()->user();
-
-    //         $request->validate([
-    //             'preferred_location' => 'required',
-    //             'date_of_last_flight' => 'required',
-    //             'latest_fleet' => 'required',
-    //             'latest_rank' => 'required',
-    //             'certificate_no' => 'required',
-    //             'country_of_licence' => 'required',
-    //             'licence_no' => 'required',
-    //             'valid_medical' => 'required',
-    //             'non_flying_position' => 'required',
-    //             'cabin_crew_height' => 'required',
-    //             'cabin_crew_weight' => 'required',
-    //         ]);
-
-    //         $candidatePersonalDetails = CondidateDetail::firstOrNew(['user_id' => $user->id]);
-
-    //         if (!$candidatePersonalDetails->exists) {
-    //             $candidatePersonalDetails->save();
-    //         }
-
-    //         $candidatePilotDetails = new CandidateJobPosition();
-    //         $candidatePilotDetails->candidate_user_id = $candidatePersonalDetails->id;
-    //         $candidatePilotDetails->preferred_location = $request->preferred_location;
-    //         $candidatePilotDetails->date_of_last_flight = $request->date_of_last_flight;
-    //         $candidatePilotDetails->latest_fleet = $request->latest_fleet;
-    //         $candidatePilotDetails->latest_rank = $request->latest_rank;
-    //         $candidatePilotDetails->certificate_no = $request->certificate_no;
-    //         $candidatePilotDetails->country_of_licence = $request->country_of_licence;
-    //         $candidatePilotDetails->licence_no = $request->licence_no;
-    //         $candidatePilotDetails->total_hours_on_fleet = $request->total_hours_on_fleet;
-    //         $candidatePilotDetails->valid_medical = $request->valid_medical;
-    //         $candidatePilotDetails->non_flying_position = $request->non_flying_position;
-    //         $candidatePilotDetails->cabin_crew_height = $request->cabin_crew_height;
-    //         $candidatePilotDetails->cabin_crew_weight = $request->cabin_crew_weight;
-    //         $candidatePilotDetails->engineer_latest_airframe = $request->engineer_latest_airframe;
-    //         $candidatePilotDetails->engineer_current_engine_type = $request->engineer_current_engine_type;
-    //         $candidatePilotDetails->save();
-
-    //         return response()->json([
-    //             'status' => true,
-    //             'message' => 'Pilot details added successfully',
-    //         ]);
-
-    //     } catch (\Exception $e) {
-    //         return response()->json([
-    //             'status' => false,
-    //             'message' => 'Error adding pilot details: ' . $e->getMessage(),
-    //         ]);
-    //     }
-    // }
-
 
     public function addPilotDetail(Request $request)
     {
