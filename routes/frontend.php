@@ -30,13 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/add-engineer-detail', [HomeController::class, 'addEngineerDetail'])->name('frontend.addEngineer');
     Route::post('/add-dispatcher-detail', [HomeController::class, 'addDispatcherDetail'])->name('frontend.add-dispatcher');
 
-
-
-
-
-
-
-
     Route::post('/update-profile-details', [HomeController::class, 'updateProfileDetails'])->name('frontend.update-profile-details');
     Route::post('/update-skills', [HomeController::class, 'updateSkill'])->name('frontend.update-skills');
 

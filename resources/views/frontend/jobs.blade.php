@@ -37,125 +37,9 @@
                                 <div class="tab-content" id="pills-tabContent">
 
                                     <!--profile tab start-->
-                                    {{-- <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
-                                        aria-labelledby="pills-profile-tab" tabindex="0">
-                                        <div class="profiels">
-
-                                            <div class="slicky_elements">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <a href="{{ route('frontend.apply-jobs') }}"
-                                                            class="text-decoration-none text-black">
-                                                            <div class="d-flex justify-content-between">
-                                                                <div class="details_container">
-                                                                    <h3 class="sub_headings mt-3">Professional & Managed
-                                                                        Service Offering Manager</h3>
-
-                                                                    <div
-                                                                        class="d-flex align-content-center flex-wrap gap-2">
-                                                                        <span class="company_nams">WNS Holding...</span>
-                                                                        <span class="company_reviews"><i
-                                                                                class="ri-star-fill"></i> 4.5</span>
-                                                                        <span class="reviews_">607 Reviews</span>
-                                                                    </div>
-
-                                                                    <div class="experience_locations d-flex mt-2">
-
-                                                                        <span class="exp_ sets d-flex gap-2">
-                                                                            <i class="ri-shopping-bag-line"></i>
-                                                                            <span>10-20 Yrs</span>
-                                                                        </span>
-                                                                        <span class="sets"> ₹ Not disclosed </span>
-                                                                        <span class="d-flex gap-2 sets">
-                                                                            <i class="ri-map-pin-2-line"></i>
-                                                                            <span>Delhi/NCR</span>
-                                                                        </span>
-
-                                                                    </div>
-
-                                                                    <div class="degree mt-2">
-                                                                        <p class="text-capitalize text-muted mb-0">
-                                                                            <i class="ri-book-2-line"></i>
-                                                                            Bachelor a dgree in business, technology , or
-                                                                            arelated field
-                                                                        </p>
-                                                                        <p class="text-capitalize text-muted">Infrastructure
-                                                                            management Service</p>
-                                                                    </div>
-                                                                    <p class="online_day">10d ago</p>
-
-                                                                </div>
-                                                                <span>
-                                                                    <img class="campany_logo" src="logoipsums.png">
-                                                                </span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="slicky_elements">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <a href="{{ route('frontend.apply-jobs') }}"
-                                                            class="text-decoration-none text-black">
-
-                                                            <div class="d-flex justify-content-between">
-                                                                <div class="details_container">
-                                                                    <h3 class="sub_headings mt-3">Professional & Managed
-                                                                        Service Offering Manager</h3>
-
-                                                                    <div
-                                                                        class="d-flex align-content-center flex-wrap gap-2">
-                                                                        <span class="company_nams">WNS Holding...</span>
-                                                                        <span class="company_reviews"><i
-                                                                                class="ri-star-fill"></i> 4.5</span>
-                                                                        <span class="reviews_">607 Reviews</span>
-                                                                    </div>
-
-                                                                    <div class="experience_locations d-flex mt-2">
-
-                                                                        <span class="exp_ sets d-flex gap-2">
-                                                                            <i class="ri-shopping-bag-line"></i>
-                                                                            <span>10-20 Yrs</span>
-                                                                        </span>
-                                                                        <span class="sets"> ₹ Not disclosed </span>
-                                                                        <span class="d-flex gap-2 sets">
-                                                                            <i class="ri-map-pin-2-line"></i>
-                                                                            <span>Delhi/NCR</span>
-                                                                        </span>
-
-                                                                    </div>
-
-                                                                    <div class="degree mt-2">
-                                                                        <p class="text-capitalize text-muted mb-0">
-                                                                            <i class="ri-book-2-line"></i>
-                                                                            Bachelor a dgree in business, technology , or
-                                                                            arelated field
-                                                                        </p>
-                                                                        <p class="text-capitalize text-muted">Infrastructure
-                                                                            management Service</p>
-                                                                    </div>
-                                                                    <p class="online_day">10d ago</p>
-
-                                                                </div>
-                                                                <span>
-                                                                    <img class="campany_logo" src="logoipsums.png">
-                                                                </span>
-                                                            </div>
-
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div> --}}
-
                                     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
                                         aria-labelledby="pills-profile-tab" tabindex="0">
-                                        <div class="profiels">
-
+                                        <div class="applies_job">
                                             <div class="slicky_elements">
                                                 <div class="card">
                                                     <div class="card-body">
@@ -195,22 +79,22 @@
                                                                             Bachelor a dgree in business, technology , or
                                                                             arelated field
                                                                         </p>
-                                                                        <p class="text-capitalize text-muted">Infrastructure
-                                                                            management Service</p>
+                                                                        <p class="text-capitalize text-muted">
+                                                                            Infrastructure management Service</p>
                                                                     </div>
                                                                     <p class="online_day">10d ago</p>
-
                                                                 </div>
                                                                 <span>
                                                                     <img class="campany_logo" src="logoipsums.png">
                                                                 </span>
                                                             </div>
-
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
 
+                                        <div class="applies_job">
                                             <div class="slicky_elements">
                                                 <div class="card">
                                                     <div class="card-body">
@@ -250,22 +134,19 @@
                                                                             Bachelor a dgree in business, technology , or
                                                                             arelated field
                                                                         </p>
-                                                                        <p class="text-capitalize text-muted">Infrastructure
-                                                                            management Service</p>
+                                                                        <p class="text-capitalize text-muted">
+                                                                            Infrastructure management Service</p>
                                                                     </div>
                                                                     <p class="online_day">10d ago</p>
-
                                                                 </div>
                                                                 <span>
                                                                     <img class="campany_logo" src="logoipsums.png">
                                                                 </span>
                                                             </div>
-
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <!--profile tab end-->

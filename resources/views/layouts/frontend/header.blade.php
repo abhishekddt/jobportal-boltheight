@@ -89,12 +89,6 @@
                 <div class="offcanvas-body p-4">
                     <div class="sider_profile d-flex align-items-center">
                         <a href="javascript:void(0)">
-                            {{-- @if (Auth::user()->profile != '')
-                                <img class="user_profile"
-                                    src="{{ url('assets/upload/users') . '/' . Auth::user()->profile }}" alt="">
-                            @else
-                                <img class="user_profile" src="{{ url('assets/default_user.webp') }}" alt="">
-                            @endif --}}
                             <img src="{{ optional($candidate)->profile_image
                                 ? asset('storage/' . optional($candidate)->profile_image)
                                 : asset('assets/default_user.webp') }}"
@@ -103,14 +97,14 @@
 
                         <div class="profile_edit">
                             <h2 class="candidateName mb-0">{{ Auth::user()->name ?? '' }}</h2>
-                            {{-- <p class=" designations_profile mb-1 p-0">Front End Developer</p> --}}
-                            @if ($employmenthome)
+                            @if (isset($employmenthome))
                                 <p class="designations_profile mb-1 p-0">
                                     {{ $employmenthome->job_title }}
                                 </p>
                             @else
                                 <p class="designations_profile mb-1 p-0">No employment record</p>
                             @endif
+
                             <a href="{{ route('frontend.user-profile') }}"
                                 class="profileEdit text-decoration-none">View & Update Profile</a>
                         </div>

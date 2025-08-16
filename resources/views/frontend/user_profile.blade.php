@@ -162,7 +162,7 @@
                                         <input type="file" id="resume-upload" name="candidate_resume"
                                             accept=".doc,.docx,.rtf,.pdf" />
 
-                                        <div class="d-flex align-items-center gap-2 mt-2">
+                                        <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
                                             <p id="file_name" class="mb-0">
                                                 @if (optional($candidate)->candidate_resume)
                                                     {{ basename(optional($candidate)->candidate_resume) }}
