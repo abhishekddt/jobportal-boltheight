@@ -197,8 +197,8 @@
                                             <div class="form-group">
                                                 <label class="form-label mb-0">Country <span
                                                         class="text-danger">*</span></label>
-                                                <select class="form-control selects1 select2" name="country"
-                                                    id="country" required style="width: 100%;">
+                                                <select class="form-control" name="country" id="country" required
+                                                    style="width: 100%;">
                                                     <option selected disabled>Select Country</option>
                                                     @foreach ($countries as $country)
                                                         <option value="{{ $country->id }}">{{ $country->name }}
@@ -212,8 +212,8 @@
                                             <div class="form-group">
                                                 <label class="form-label mb-0">State <span
                                                         class="text-danger">*</span></label>
-                                                <select class="form-control select2" name="state" id="state"
-                                                    required style="width: 100%;">
+                                                <select class="form-control" name="state" id="state" required
+                                                    style="width: 100%;">
                                                     <option selected disabled class="text-muted">Select State</option>
                                                     @if (!empty($states) && count($states) > 0)
                                                         @foreach ($states as $state)
@@ -229,8 +229,8 @@
                                             <div class="form-group select2form">
                                                 <label class="form-label mb-0">City <span
                                                         class="text-danger">*</span></label>
-                                                <select class="select2 form-control" name="city" id="city"
-                                                    required style="width: 100%;">
+                                                <select class="form-control" name="city" id="city" required
+                                                    style="width: 100%;">
                                                     <option selected class="text-muted">Select City</option>
                                                     @if (!empty($cities))
                                                         @foreach ($cities as $city)
@@ -242,7 +242,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-2">
                                             <div class="form-group">
                                                 <label class="form-label mb-0">Password<span
                                                         class="text-danger">*</span></label>
@@ -257,7 +257,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-6 mb-2">
                                             <div class="form-group">
                                                 <label class="form-label mb-0">Confirm Password<span
                                                         class="text-danger">*</span></label>
@@ -272,7 +272,12 @@
                                                     style="font-size: 14px; display: none;"></p>
                                             </div>
                                         </div>
-
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <p class="text-danger m-0" id="password_not_matched"
+                                                style="font-size:12px; display:none;">Password do not matched</p>
+                                            <p class="text-success m-0" id="password_matched"
+                                                style="font-size:12px; display:none;">Password matched</p>
+                                        </div>
                                         <div class="col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label mb-0">Gender<span
@@ -375,6 +380,24 @@
 
     <script>
         $(document).ready(function() {
+
+            $('#confirm_password, #first_password').on('keyup', function() {
+                let password = $('#first_password').val();
+                let confirmPassword = $('#confirm_password').val();
+
+                if (password.length > 0 || confirmPassword.length > 0) {
+                    if (password === confirmPassword) {
+                        $('#password_matched').show();
+                        $('#password_not_matched').hide();
+                    } else {
+                        $('#password_not_matched').show();
+                        $('#password_matched').hide();
+                    }
+                } else {
+                    $('#password_matched').hide();
+                    $('#password_not_matched').hide();
+                }
+            });
 
             document.querySelectorAll('.toggle-password').forEach(icon => {
                 icon.addEventListener('click', function() {

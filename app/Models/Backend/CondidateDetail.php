@@ -50,6 +50,7 @@ class CondidateDetail extends Model
         "job_profile",
         "profile_summary",
         "candidate_resume",
+        "last_updated_resume",
         "profile_image",
     ];
 

@@ -4,28 +4,28 @@
     <div class="container pt-3 pb-3">
 
         <section class="mb-2">
-            <a class="btn btnoutlinelight  m-1" href="#!" role="button">
+            <a class="btn btnoutlinelight  m-1" href="https://www.facebook.com/Boltheights" role="button">
                 <i class="ri-facebook-line"></i>
             </a>
 
-            <a class="btn btnoutlinelight m-1" href="#!" role="button">
+            <a class="btn btnoutlinelight m-1" href="https://x.com/boltheights" role="button">
                 <i class="ri-twitter-line"></i>
             </a>
 
-            <a class="btn btnoutlinelight  m-1" href="#!" role="button">
+            {{-- <a class="btn btnoutlinelight  m-1" href="" role="button">
                 <i class="ri-google-line"></i>
-            </a>
+            </a> --}}
 
-            <a class="btn btnoutlinelight m-1" href="#!" role="button">
+            <a class="btn btnoutlinelight m-1" href="https://www.instagram.com/boltheights/" role="button">
                 <i class="ri-instagram-line"></i>
             </a>
 
-            <a class="btn btnoutlinelight m-1" href="#!" role="button">
+            <a class="btn btnoutlinelight m-1" href="https://www.linkedin.com/company/boltheights" role="button">
                 <i class="ri-linkedin-line"></i>
             </a>
 
-            <a class="btn btnoutlinelight m-1" href="#!" role="button">
-                <i class="ri-github-line"></i>
+            <a class="btn btnoutlinelight m-1" href="https://www.youtube.com/@bolt-infra-height-pvt-ltd" role="button">
+                <i class="ri-youtube-line"></i>
             </a>
 
         </section>
@@ -1600,7 +1600,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label mb-0">Country <span class="text-danger">*</span></label>
-                                <select name="country" name="country" class="form-control selects1">
+                                <select name="country_id" class="form-control selects1">
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}"
                                             {{ $user->country_id == $country->id ? 'selected' : '' }}>
@@ -1614,7 +1614,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label mb-0">State <span class="text-danger">*</span></label>
-                                <select name="state" class="form-control selects1">
+                                <select name="state_id" class="form-control selects1">
                                     @foreach ($states->where('country_id', $user->country_id) as $state)
                                         <option value="{{ $state->id }}"
                                             {{ $user->state_id == $state->id ? 'selected' : '' }}>
@@ -1628,7 +1628,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label mb-0">City<span class="text-danger">*</span></label>
-                                <select name="city" class="form-control selects1">
+                                <select name="city_id" class="form-control selects1">
                                     @foreach ($cities->where('state_id', $user->state_id) as $city)
                                         <option value="{{ $city->id }}"
                                             {{ $user->city_id == $city->id ? 'selected' : '' }}>
@@ -1707,7 +1707,7 @@
 <!--- profile edit modal end-->
 
 <!-- KEY Skill Modal Start -->
-<div class="modal fade" id="skill_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="skill_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -1725,6 +1725,7 @@
                     <div class="col-md-12 mb-4">
                         <div class="form-group select2form">
                             <label class="text-dark">Skill / software name</label>
+
                             <select class="select2 skill-select form-control block" name="skills[]"
                                 multiple="multiple" style="width: 100%">
                                 <option value="it_security"
@@ -1750,7 +1751,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- KEY Skill Modal End -->
 
 <!-- iT Skill Modal Start -->
@@ -1761,7 +1762,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h1 class="modal-title fs-5">Add Your IT Skills</h1>
+                    <h1 class="modal-title fs-5">Add Your Skills</h1>
                     <p class="text-muted modal_pText">Add skills that best define your expertise, for e.g, Direct
                         Marketing, Oracle, Java, etc. (Minimum 1) Skills</p>
                 </div>
@@ -1857,7 +1858,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h1 class="modal-title fs-5">Edit Your IT Skills</h1>
+                    <h1 class="modal-title fs-5">Edit Your Skills</h1>
                     <p class="text-muted modal_pText">Add skills that best define your expertise, for e.g, Direct
                         Marketing, Oracle, Java, etc. (Minimum 1) Skills</p>
                 </div>
@@ -1967,8 +1968,7 @@
                         {{-- Company Name --}}
                         <div class="col-md-6 mb-4">
                             <div class="form-group">
-                                <label class="form-label mb-0">company name<span
-                                        class="text-danger">*</span></label>
+                                <label class="form-label mb-0">company name<span class="text-danger">*</span></label>
                                 <input type="text" placeholder="company name" name="company_name"
                                     class="form-control typeText" required>
                             </div>
@@ -2081,6 +2081,36 @@
                                     required>
                             </div>
                         </div>
+
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label mb-2">Is this your current employment? <span
+                                    class="text-danger">*</span></label>
+                            <div class="form-group d-flex gap-3 flex-wrap">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="is_current_employment"
+                                        id="employmentYes" value="1" checked>
+                                    <label class="form-check-label" for="employmentYes">Yes</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="is_current_employment"
+                                        id="employmentNo" value="0">
+                                    <label class="form-check-label" for="employmentNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Notice Period --}}
+                        <div class="col-md-6 mb-4" id="editnoticePeriodWrapper" style="display: none;">
+                            <div class="form-group">
+                                <label class="form-label mb-0">Expected<span class="text-danger">*</span></label>
+                                <select class="form-control selects1" name="notice_period">
+                                    <option disabled>Select Notice Period</option>
+                                    <option value="15 Days or Less">15 Days or Less</option>
+                                    <option value="1 Month">1 Month</option>
+                                    <option value="2 Month">2 Month</option>
+                                    <option value="3 Month">3 Month</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     {{-- Modal Footer --}}
                     <div class="modal-footer">
@@ -2089,7 +2119,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
@@ -2683,8 +2712,8 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-group select2form">
                                 <label class="text-dark">Language proficiency</label>
-                                <select class="select2 form-control block" name="language[]" multiple="multiple"
-                                    style="width: 100%">
+                                <select class="select2 form-control block" aria-placeholder="choose language"
+                                    id="add_language" name="language[]" multiple="multiple" style="width: 100%">
                                     <option value="Hindi">Hindi</option>
                                     <option value="English">English</option>
                                 </select>
@@ -2802,9 +2831,8 @@
                                         ? $candidateLanguageRaw
                                         : explode(',', $candidateLanguageRaw ?? '');
                                 @endphp
-
                                 <select class="select2 form-control block" name="language[]" multiple="multiple"
-                                    style="width: 100%">
+                                    style="width: 100%" required>
                                     <option value="Hindi"
                                         {{ in_array('Hindi', $candidateLanguages) ? 'selected' : '' }}>Hindi</option>
                                     <option value="English"
@@ -2940,6 +2968,12 @@
 
     $('.select2').select2({
         dropdownParent: $('#skill_add'),
+    });
+    $('#add_language').select2({
+        dropdownParent: $('#add_language').parent(),
+        dropdownCss: {
+            'z-index': 999999
+        }
     });
 
     $('.select2').select2({

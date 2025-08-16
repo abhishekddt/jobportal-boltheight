@@ -7,15 +7,6 @@
                 <div class="col-lg-3 home_profile">
                     <div class="card sticky-top" style="top: 70px;">
                         <div class="card-body">
-                            {{-- <div class="profile_image d-flex justify-content-center">
-                                @if (Auth::user()->profile != '')
-                                    <img src="{{ url('assets/upload/users') . '/' . Auth::user()->profile }}"
-                                        class="candidate_img" alt="user img">
-                                @else
-                                    <img src="{{ url('assets/default_user.webp') }}" class="candidate_img" alt="user img">
-                                @endif
-                            </div> --}}
-
                             <div class="profile_image d-flex justify-content-center">
                                 <img src="{{ optional($candidate)->profile_image
                                     ? asset('storage/' . optional($candidate)->profile_image)

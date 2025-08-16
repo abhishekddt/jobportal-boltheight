@@ -212,9 +212,9 @@ class HomeController extends Controller
             'phone' => 'nullable|string|max:20',
             'email' => 'nullable|string|email|max:255|unique:users,email,' . $user->id,
             'gender' => 'nullable|string|in:Male,Female',
-            'country' => 'nullable|integer|exists:countries,id',
-            'state' => 'nullable|integer|exists:states,id',
-            'city' => 'nullable|integer|exists:cities,id',
+            'country_id' => 'nullable|integer|exists:countries,id',
+            'state_id' => 'nullable|integer|exists:states,id',
+            'city_id' => 'nullable|integer|exists:cities,id',
             'availability' => 'nullable|string',
             'is_experienced' => 'nullable|boolean',
         ]);
@@ -226,9 +226,9 @@ class HomeController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'gender' => $request->gender,
-            'country' => $request->country,
-            'state' => $request->state,
-            'city' => $request->city,
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
+            'city_id' => $request->city_id,
         ]);
 
         $candidate = CondidateDetail::firstOrNew(['user_id' => $user->id]);
@@ -266,48 +266,48 @@ class HomeController extends Controller
         }
     }
 
-    public function updateEmployement(Request $request)
-    {
-        try {
-            $user = auth()->user();
+    // public function updateEmployement(Request $request)
+    // {
+    //     try {
+    //         $user = auth()->user();
 
-            $request->validate([
-                'experience' => 'required',
-                'experience_month' => 'required',
-                'company_name' => 'required|string',
-                'job_title' => 'required|string|max:250',
-                'joining_date' => 'required|date',
-                'current_salary' => 'required|numeric',
-                'notice_period' => 'required',
-                'job_profile' => 'required',
-                'is_current_employment' => 'required',
-                'employment_type' => 'required',
-            ]);
+    //         $request->validate([
+    //             'experience' => 'required',
+    //             'experience_month' => 'required',
+    //             'company_name' => 'required|string',
+    //             'job_title' => 'required|string|max:250',
+    //             'joining_date' => 'required|date',
+    //             'current_salary' => 'required|numeric',
+    //             'notice_period' => 'required',
+    //             'job_profile' => 'required',
+    //             'is_current_employment' => 'required',
+    //             'employment_type' => 'required',
+    //         ]);
 
-            $candidate = CondidateDetail::firstOrNew(['user_id' => $user->id]);
-            $candidate->experience = $request->experience;
-            $candidate->experience_month = $request->experience_month;
-            $candidate->company_name = $request->company_name;
-            $candidate->job_title = $request->job_title;
-            $candidate->joining_date = $request->joining_date;
-            $candidate->current_salary = $request->current_salary;
-            $candidate->notice_period = $request->notice_period;
-            $candidate->job_profile = $request->job_profile;
-            $candidate->is_current_employment = $request->is_current_employment;
-            $candidate->employment_type = $request->employment_type;
-            $candidate->save();
+    //         $candidate = CondidateDetail::firstOrNew(['user_id' => $user->id]);
+    //         $candidate->experience = $request->experience;
+    //         $candidate->experience_month = $request->experience_month;
+    //         $candidate->company_name = $request->company_name;
+    //         $candidate->job_title = $request->job_title;
+    //         $candidate->joining_date = $request->joining_date;
+    //         $candidate->current_salary = $request->current_salary;
+    //         $candidate->notice_period = $request->notice_period;
+    //         $candidate->job_profile = $request->job_profile;
+    //         $candidate->is_current_employment = $request->is_current_employment;
+    //         $candidate->employment_type = $request->employment_type;
+    //         $candidate->save();
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Employment updated successfully',
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Error updating employment: ' . $e->getMessage(),
-            ], 500);
-        }
-    }
+    //         return response()->json([
+    //             'status' => true,
+    //             'message' => 'Employment updated successfully',
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         return response()->json([
+    //             'status' => false,
+    //             'message' => 'Error updating employment: ' . $e->getMessage(),
+    //         ], 500);
+    //     }
+    // }
 
 
     // All Controller related to Employment
@@ -358,6 +358,8 @@ class HomeController extends Controller
             'company_name' => 'required',
             'job_title' => 'required',
             'experience' => 'required|date_format:Y-m',
+            'is_current_employment' => 'required|in:0,1',
+            'notice_period' => 'required_if:is_current_employment,1|nullable',
         ]);
 
         $user = auth()->user();
@@ -376,6 +378,8 @@ class HomeController extends Controller
             'job_title' => $request->job_title,
             'joining_date' => $joiningDate,
             'experience' => $experienceFormatted,
+            'is_current_employment' => $request->is_current_employment,
+            'notice_period' => $request->is_current_employment == 1 ? $request->notice_period : null,
         ]);
         return response()->json([
             'status' => true,
@@ -683,7 +687,7 @@ class HomeController extends Controller
                 'date_of_birth' => 'required|date',
                 'marital_status' => 'required',
                 'language' => 'required|array',
-                'language.*' => 'string',
+                'language.*' => 'string|required',
                 'permanent_address' => 'required',
                 'hometown' => 'required',
                 'pincode' => 'required|numeric'
@@ -729,6 +733,7 @@ class HomeController extends Controller
 
             $candidate = CondidateDetail::firstOrNew(['user_id' => $user->id]);
             $candidate->candidate_resume = $filePath;
+            $candidate->last_updated_resume = now();
             $candidate->save();
 
             return response()->json([
@@ -998,6 +1003,27 @@ class HomeController extends Controller
                 'status' => false,
                 'message' => 'Error: ' . $e->getMessage(),
             ], 500);
+        }
+    }
+
+
+    public function welcomeEmail(){
+        // return view('frontend.welcome-email');
+        try {
+            $user = auth()->user();
+            $candidate = CondidateDetail::where('user_id', $user->id)->first();
+            $lastUpdated = $candidate->updated_at ?? $user->updated_at;
+            $lastUpdatedHuman = $lastUpdated ? Carbon::parse($lastUpdated)->diffForHumans() : 'Not updated yet';
+            $employmenthome = EmploymentDetail::where('user_id', auth()->id())
+                ->latest('created_at')
+                ->first();
+            $countries = Country::all();
+            $states = State::all();
+            $cities = City::all();
+
+            return view('frontend.welcome-email', compact('user', 'candidate', 'lastUpdatedHuman', 'countries', 'states', 'cities', 'employmenthome'));
+        } catch (\Exception $e) {
+            abort(500);
         }
     }
 }

@@ -109,7 +109,7 @@
                                     </li>
 
                                     <li>
-                                        <span> IT skills </span>
+                                        <span>Skills </span>
                                         <a href="javascript()" data-bs-toggle="modal" data-bs-target="#it_skill_add">Add</a>
                                     </li>
                                     <li>
@@ -135,8 +135,7 @@
 
                                     <li>
                                         <span> Licence/Cirtification</span>
-                                        <a href="javascript()" data-bs-toggle="modal"
-                                            data-bs-target="#personal_details">Add</a>
+                                        <a href="javascript()" data-bs-toggle="modal" data-bs-target="#pilot">Add</a>
                                     </li>
 
                                 </ul>
@@ -608,12 +607,17 @@
                                 <form id="resumeUploadForm" enctype="multipart/form-data">
                                     @csrf
                                     <div class="upload-box justify-content-center align-items-center">
-                                        @if (!optional($candidate)->candidate_resume)
+                                        {{-- @if (!optional($candidate)->candidate_resume)
                                             <label for="resume-upload" class="upload-label">
                                                 <strong>Already have a resume?</strong>
                                                 <a class="text-primary text-decoration-none">Upload resume</a>
                                             </label>
-                                        @endif
+                                        @endif --}}
+
+                                        <label for="resume-upload" class="upload-label">
+                                            <strong>Already have a resume?</strong>
+                                            <a class="text-primary text-decoration-none">Upload resume</a>
+                                        </label>
 
                                         <input type="file" id="resume-upload" name="candidate_resume"
                                             accept=".doc,.docx,.rtf,.pdf" />
@@ -630,6 +634,11 @@
                                                     title="View Resume">
                                                     <i class="ri-eye-line"></i>
                                                 </a>
+                                                <br>
+                                                <p>
+                                                    last updated:-
+                                                    {{ \Carbon\Carbon::parse($candidate->last_updated_resume)->format('d-m-Y') }}
+                                                </p>
                                             @endif
                                         </div>
 
@@ -800,7 +809,7 @@
                     <!--- aviations  end-->
 
                     <!--- key and skills start-->
-                    <div class="card mb-3">
+                    {{-- <div class="card mb-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-2">
                                 <span>
@@ -808,9 +817,6 @@
                                     <a class="text-decoration-none text-dark" data-bs-toggle="modal"
                                         data-bs-target="#skill_add"><i class="ri-pencil-line"></i></a>
                                 </span>
-                                {{-- <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#skill_add">Add skills</a> --}}
-
                                 @if (empty($skills))
                                     <a class="add_profile_details text-decoration-none" type="button"
                                         data-bs-toggle="modal" data-bs-target="#skill_add">
@@ -826,7 +832,7 @@
                                 @endforelse
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <!--- key and skills end-->
 
 
@@ -835,12 +841,12 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-2">
                                 <span>
-                                    <strong>IT skills</strong>
+                                    <strong>skills</strong>
                                     {{-- <a class="text-decoration-none text-dark" data-bs-toggle="modal"
                                         data-bs-target="#it_skill_add"><i class="ri-pencil-line"></i></a> --}}
                                 </span>
                                 <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#it_skill_add">Add IT skills</a>
+                                    data-bs-target="#it_skill_add">Skills</a>
                             </div>
 
                             <div class="table-responsive">
@@ -913,22 +919,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($employments as $employment)
+                                        @foreach ($employments->sortByDesc('is_current_employment') as $employment)
                                             <tr>
                                                 <td>{{ $employment->experience }}</td>
-                                                <td>{{ $employment->company_name }}</td>
+                                                <td>
+                                                    {{ $employment->company_name }}
+                                                    @if ($employment->is_current_employment == 1)
+                                                        <span class="badge bg-success ms-2">Current</span>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $employment->job_title }}</td>
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <button class="edit-btn-employment border-0 bg-transparent"
-                                                            data-id="{{ $employment->id }}" {{-- data-experience="{{ $employment->experience }}" --}}
+                                                            data-id="{{ $employment->id }}"
                                                             data-experience="{{ $employment->joining_date ? $employment->joining_date->format('Y-m') : '' }}"
                                                             data-company_name="{{ $employment->company_name }}"
                                                             data-job_title="{{ $employment->job_title }}"
+                                                            data-is_current_employment="{{ $employment->is_current_employment }}"
+                                                            data-notice_period="{{ $employment->notice_period }}"
                                                             data-bs-toggle="modal" data-bs-target="#edit_employment">
                                                             <i class="ri-pencil-line"></i>
                                                         </button>
-
 
                                                         <button class="btn-delete-employment border-0 bg-transparent"
                                                             data-id="{{ $employment->id }}">
@@ -1022,13 +1034,10 @@
                                     <a class="text-decoration-none text-dark" data-bs-toggle="modal"
                                         data-bs-target="#add_profile_summry"><i class="ri-pencil-line"></i></a>
                                 </span>
-                                {{-- <a class="add_profile_details text-decoration-none" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#profile_summry">Add Profile summary </a> --}}
-
-                                @if (empty($skills))
+                                @if (empty($candidate) || empty($candidate->profile_summary))
                                     <a class="add_profile_details text-decoration-none" type="button"
-                                        data-bs-toggle="modal" data-bs-target="#skill_add">
-                                        Add skills
+                                        data-bs-toggle="modal" data-bs-target="#profile_summry">
+                                        Add Profile summary
                                     </a>
                                 @endif
                             </div>
@@ -1310,8 +1319,31 @@
                 $('input[name="experience"]').val(button.data('experience'));
                 $('input[name="company_name"]').val(button.data('company_name'));
                 $('input[name="job_title"]').val(button.data('job_title'));
-                // $('select[name="notice_period"]').val(button.data('notice_period'));
+
+                // Set current employment radio
+                const isCurrent = button.data('is_current_employment');
+                $(`input[name="is_current_employment"][value="${isCurrent}"]`).prop('checked', true);
+
+                // Show/hide Notice Period field based on is_current_employment
+                if (isCurrent == 1) {
+                    $('#editnoticePeriodWrapper').show();
+                    $('select[name="notice_period"]').val(button.data('notice_period'));
+                } else {
+                    $('#editnoticePeriodWrapper').hide();
+                    $('select[name="notice_period"]').val('');
+                }
             });
+
+            // Toggle Notice Period visibility when radio changes
+            $('input[name="is_current_employment"]').on('change', function() {
+                if ($(this).val() == 1) {
+                    $('#editnoticePeriodWrapper').show();
+                } else {
+                    $('#editnoticePeriodWrapper').hide();
+                    $('select[name="notice_period"]').val('');
+                }
+            });
+
 
 
             $('#edit-employment-form').on('submit', function(e) {

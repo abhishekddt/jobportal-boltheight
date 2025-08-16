@@ -59,7 +59,12 @@ Route::middleware('auth')->group(function () {
     // Route for Personal Details
     Route::post('/add-personal-details', [HomeController::class, 'addPersonalDetails'])->name('frontend.add-personal-details');
     Route::post('/update-personal-details', [HomeController::class, 'addPersonalDetails'])->name('frontend.update-personal-details');
+    //  Route::post('/update-personal-details', [HomeController::class, 'updatePersonalDetails'])->name('frontend.update-personal-details');
 
     Route::post('/upload-resume', [HomeController::class, 'storeresume'])->name('resume.upload');
     Route::post('/upload-profile-image', [HomeController::class, 'storeProfileImage'])->name('profile.image.upload');
+
+
+    // Welcome Email
+    Route::get('/welcome-email',[HomeController::class,'welcomeEmail'])->name('frontend.welcome.email');
 });
